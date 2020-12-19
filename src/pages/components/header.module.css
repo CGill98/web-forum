@@ -1,0 +1,42 @@
+.header {
+    background-color: rgb(20, 20,0);
+    width: 100%;
+    padding: 5px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.header h1 {
+    color: white;
+}
+
+.brand {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.brand h1 {
+    margin-left: 20px;
+}
+
+
+
+.list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+
+    list-style: none;
+}
+
+.list li {
+    text-decoration: none;
+}
+
+.list li a {
+    color: white;
+    text-decoration: none;
+}

@@ -1,0 +1,24 @@
+.topiclists {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-self: center;
+}
+
+.topicsection li {
+    list-style: none;
+}
+
+.topicsection a {
+    text-decoration: none;
+    color: white;
+}
+
+.trendingpost {
+    background-color: rgb(20, 20, 0);
+}
+
+.trendingpost:hover {
+    background-color: rgb(140, 40, 40);
+}
