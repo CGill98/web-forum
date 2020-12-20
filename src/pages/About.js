@@ -1,9 +1,10 @@
 import React from 'react'
 import Header from './components/Header'
+import globalstyles from './Global.module.css'
 
 const About = () => {
     return (
-        <div>
+        <div  className={globalstyles.page}>
             <Header />
             <h1>
             This is the about page

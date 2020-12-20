@@ -1,5 +1,7 @@
 .page {
     background-color: rgb(40, 40, 40);
+    height: auto;
+    min-height: 100vh;
 
 }
 

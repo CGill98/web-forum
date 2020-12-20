@@ -2,7 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import homestyles from '../HomeStyles.module.css'
 
-const TrendingTopic = () => {
+//CONVERT THIS TO A POST 'ADVERTISEMENT'
+const TrendingPost = () => {
     return (
     <div className={homestyles.trendingpost}>
         <Link to='/philosophy/1'>
@@ -16,4 +17,4 @@ const TrendingTopic = () => {
     )
 }
 
-export default TrendingTopic
+export default TrendingPost

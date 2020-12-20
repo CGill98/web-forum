@@ -1,6 +1,7 @@
 import './App.css';
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Topic from './pages/Topic'
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,6 +23,7 @@ function App() {
           <Route path="/about">
             <About />
           </Route>
+          <Route path="/:topic" component={Topic} />
         </Switch>
       </Router>
     </div>
