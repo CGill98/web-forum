@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from './components/Header'
-import TrendingPost from './components/TrendingPost'
+import PostDivLink from './components/PostDivLink'
 
 import {Link} from 'react-router-dom'
 import globalstyles from './Global.module.css'
@@ -38,15 +38,15 @@ const Home = () => {
                             </li>
                         </ul>
                         <ul className={homestyles.topicsection}>
-                            <h2>Education</h2>
+                            <h2>Hobbies</h2>
                             <li>
-                                <Link to='/philosophy'>
-                                    Philosophy
+                                <Link to='/sports'>
+                                    Sports
                                 </Link>
                             </li>
                             <li>
                                 <Link to='/science'>
-                                    Science
+                                    Art
                                 </Link>
                             </li>
                             <li>
@@ -119,10 +119,10 @@ const Home = () => {
                             </div>
                         </Link>
                     </div>
-                    <TrendingPost />
-                    <TrendingPost />
-                    <TrendingPost />
-                    <TrendingPost />
+                    <PostDivLink trending={true}/>
+                    <PostDivLink trending={true} />
+                    <PostDivLink trending={true} />
+                    <PostDivLink trending={true} />
 
                 </div>
             </div>

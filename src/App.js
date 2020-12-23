@@ -2,6 +2,7 @@ import './App.css';
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Topic from './pages/Topic'
+import Post from './pages/Post'
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,6 +24,7 @@ function App() {
           <Route path="/about">
             <About />
           </Route>
+          <Route path="/:topic/:postId" component={Post}/>
           <Route path="/:topic" component={Topic} />
         </Switch>
       </Router>
