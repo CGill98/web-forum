@@ -6,6 +6,9 @@ import {Link, useParams} from 'react-router-dom'
 import globalstyles from './Global.module.css'
 import topicstyles from './TopicStyles.module.css'
 
+import headphones from '../assets/images/headphones.png'
+import capy from '../assets/images/capy.png'
+
 const Topic = ({ match }) => {
     const {topic} = useParams()
     const pageTitle = `${topic[0].toUpperCase()}${topic.slice(1)}` 
@@ -33,8 +36,8 @@ Quisque eleifend egestas ex, at vehicula risus tempus vel. Maecenas bibendum max
                     </form>
                 </div>
                 <div>
-                    <PostDivLink />
-                    <PostDivLink imgLink={'./static/web-forum\src\assets\images\headphones.png'}/>
+                    <PostDivLink imgLink={capy}/>
+                    <PostDivLink imgLink={headphones}/>
                     <PostDivLink />
                     <PostDivLink />
                     <PostDivLink />
