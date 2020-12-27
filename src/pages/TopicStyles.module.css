@@ -29,6 +29,33 @@
 }
 
 .textarea {
+
     height: 200px;
     width: 600px;
+    padding: 5px;
+    background-color: #f8f8f8;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+
+    font-family: Arial;
+    font-size: 15px;
+    outline: none;
+}
+
+.submitbtn {
+    background-color: rgb(180, 0, 0);
+    color: white;
+    border: none;
+    padding: 12px;
+    min-height: 40px;
+    min-width: 60px;
+    outline: none;
+    font-size: 20px;
+    border-radius: 8px;
+
+}
+
+.submitbtn:hover {
+cursor: pointer;
 }

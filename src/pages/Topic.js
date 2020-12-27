@@ -29,12 +29,12 @@ Nunc mollis elit et ipsum porta gravida. Curabitur elementum vehicula diam eu po
 
 Quisque eleifend egestas ex, at vehicula risus tempus vel. Maecenas bibendum maximus sem non tempus. Ut rhoncus neque a dapibus consectetur. Sed ornare dignissim orci in vestibulum. Donec eget odio sed nisi faucibus sagittis. Quisque accumsan, elit id ultricies facilisis, leo justo accumsan diam, a mattis massa lacus nec massa. Aliquam mattis tellus tristique augue sodales egestas quis quis elit. Nam eu venenatis metus, vel lacinia purus.
                         </textarea>
-                        <input type="submit" value="Submit" />
+                        <input type="submit" value="Submit" className={topicstyles.submitbtn}/>
                     </form>
                 </div>
                 <div>
                     <PostDivLink />
-                    <PostDivLink />
+                    <PostDivLink imgLink={'./static/web-forum\src\assets\images\headphones.png'}/>
                     <PostDivLink />
                     <PostDivLink />
                     <PostDivLink />

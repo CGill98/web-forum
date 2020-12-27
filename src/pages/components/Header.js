@@ -1,4 +1,4 @@
-import React, {Image} from 'react'
+import React from 'react'
 import {
     BrowserRouter as Router,
     Switch,
