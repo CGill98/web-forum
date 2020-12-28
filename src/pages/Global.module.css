@@ -9,6 +9,10 @@
     color: white;
 }
 
+.centeredtext {
+    text-align: center;
+}
+
 .page a {
     text-decoration: none;
 }

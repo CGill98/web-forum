@@ -18,7 +18,7 @@ const Topic = ({ match }) => {
         <div className={globalstyles.page}>
             <Header />
             <div className={globalstyles.content}>
-                <h1>{pageTitle}</h1>
+                <h1 className={globalstyles.centeredtext}>{pageTitle}</h1>
                 <div className={topicstyles.formdiv}>   
                     <h2>Make a Post</h2>
                     <form className={topicstyles.newpostform}>
@@ -35,13 +35,12 @@ Quisque eleifend egestas ex, at vehicula risus tempus vel. Maecenas bibendum max
                         <input type="submit" value="Submit" className={topicstyles.submitbtn}/>
                     </form>
                 </div>
-                <div>
-                    <PostDivLink imgLink={capy}/>
-                    <PostDivLink imgLink={headphones}/>
-                    <PostDivLink />
-                    <PostDivLink />
-                    <PostDivLink />
-
+                <div className={topicstyles.postlinkdivcontainer}>
+                    <PostDivLink imgLink={capy} id={1}/>
+                    <PostDivLink imgLink={headphones} id={2}/>
+                    <PostDivLink id={3}/>
+                    <PostDivLink id={4}/>
+                    <PostDivLink id={5}/>
                 </div>
             </div>
         </div>

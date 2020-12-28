@@ -1,9 +1,12 @@
 .formdiv {
     width: auto;
-
+    max-width: 800px;
+    min-width: auto;
     background-color: rgb(20, 20, 0);
     padding: 10px;
 
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 25px;
     border-radius: 8px;
 
@@ -28,19 +31,27 @@
     margin-bottom: 15px;
 }
 
+.newpostform > input {
+    width: 300px;
+}
+
 .textarea {
 
-    height: 200px;
-    width: 600px;
+    height: auto;
+    min-height: 200px;
+    width: 100%;
+    min-width: 700px;
     padding: 5px;
     background-color: #f8f8f8;
     border: 2px solid #ccc;
     border-radius: 10px;
-    overflow: hidden;
+    overflow: scroll;
 
     font-family: Arial;
     font-size: 15px;
     outline: none;
+
+    resize: none;
 }
 
 .submitbtn {
@@ -58,4 +69,15 @@
 
 .submitbtn:hover {
 cursor: pointer;
+}
+
+.postlinkdivcontainer {
+
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }

@@ -110,19 +110,10 @@ const Home = () => {
                 </div>
                 <div className={homestyles.trendingpostsdiv}>
                     <h1>Trending Posts</h1>
-                    <div className={homestyles.trendingpost}>
-                        <Link to='/philosophy/1'>
-                            <h2>The Problem of Induction</h2> 
-                            <h3>On Philosophy</h3>
-                            <div>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum aliquam sodales. Suspendisse mattis metus sit amet orci elementum...
-                            </div>
-                        </Link>
-                    </div>
-                    <PostDivLink trending={true}/>
-                    <PostDivLink trending={true} />
-                    <PostDivLink trending={true} />
-                    <PostDivLink trending={true} />
+                    <PostDivLink trending={true} id={1}/>
+                    <PostDivLink trending={true} id={2}/>
+                    <PostDivLink trending={true} id={3}/>
+                    <PostDivLink trending={true} id={4}/>
 
                 </div>
             </div>

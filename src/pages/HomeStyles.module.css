@@ -39,11 +39,18 @@
 
 .trendingpost {
     background-color: rgb(20, 20, 0);
-
+    min-width: 500px;
     padding: 10px;
     margin-bottom: 25px;
-
     border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.trendingpost h2 {
+    text-align: center;
 }
 
 .trendingpost:hover {
@@ -53,10 +60,14 @@
 }
 
 .trendingpostcontent {
+    margin: 0px !important;
+
     display: flex;
-    justify-content: start;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .trendingpostimg {
-    margin-right: 20px;
+    margin-bottom: 10px;
 }

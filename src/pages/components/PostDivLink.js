@@ -1,12 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import homestyles from '../HomeStyles.module.css'
-var sizeOf = require('image-size');
-const fs = require('fs');
+import './PostDivLink.css'
 
 //CONVERT THIS TO A POST 'ADVERTISEMENT'
-const PostDivLink = ({ trending, imgLink }) => {
-    console.log(imgLink)
+const PostDivLink = ({ trending, imgLink, id }) => {
+    
     const [image, setImage] = useState({
         width: 0,//file
         height: 0,
@@ -46,11 +45,18 @@ const PostDivLink = ({ trending, imgLink }) => {
         request.send();
     }
 
-    console.log(image)
+
+    useEffect(()=>{
+        if (document.getElementById(id)) {
+            const titleWidth = 300
+            const imgWidth = image.webWidth
+            document.getElementById(id).style.width = `${titleWidth < imgWidth ? imgWidth + 40 : titleWidth + 40}px`
+        }
+    })
 
 
     return (
-    <div className={homestyles.trendingpost}>
+    <div className={homestyles.trendingpost} id={id}>
         <Link to='/philosophy/1'>
             <h2>The Problem of Induction</h2> 
             {trending && <h3>On Philosophy</h3>}

@@ -12,10 +12,13 @@ import logo from '../../assets/images/orangutan-red.png'
 export default function Header() {
   return (
         <div className={style.header}>
-          <div className={style.brand}>
-            <img src={logo} height='70' width='70'></img>
-            <h1>Web Forum</h1>
-          </div>
+          <Link to='/'>
+            <div className={style.brand}>
+                <img src={logo} height='70' width='70'></img>
+                <h1>Web Forum</h1>
+            </div>
+          </Link>
+
           
             <ul className={style.list}>
                 <li>
