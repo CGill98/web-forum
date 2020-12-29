@@ -24,7 +24,7 @@ function App() {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/:topic/:postId" component={Post}/>
+          <Route path="/:topic/:postID" component={Post}/>
           <Route path="/:topic" component={Topic} />
         </Switch>
       </Router>

@@ -1,0 +1,94 @@
+.post {
+    background-color: rgb(20, 20, 0);
+
+    padding: 10px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.comment {
+    background-color: rgb(20, 20, 0);
+    padding: 10px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+
+    width: auto;
+    max-width: 800px;
+    height: auto;
+    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.commentcontent {
+    display: flex;
+    justify-content: center;
+} 
+
+.commentcontent > img {
+    margin-right: 10px;
+}
+
+.commentcontent > img:hover {
+    cursor: pointer;
+
+}
+
+
+
+.comment ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 5px;
+    justify-content: center;
+    align-self: center;
+    list-style: none;
+    
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 10px;
+}
+
+.comment li {
+    background-color: rgb(180, 0, 0);
+    border-radius: 8px;
+    padding: 2px;
+    width: 50px;
+
+    text-align: center;
+    font-size: 14px;
+}
+
+.comment li:hover {
+    cursor: pointer;
+    background-color: rgb(140, 0, 0);
+
+}
+
+.replybtn {
+    background-color: rgb(180, 0, 0);
+    border-radius: 8px;
+    padding: 5px;
+    height: 100%;
+    max-width: 100px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.replybtn:hover {
+    cursor: pointer;
+    background-color: rgb(140, 0, 0);
+
+}
+
+.comment span {
+    margin-right: 10px;
+    text-align: center;
+}
