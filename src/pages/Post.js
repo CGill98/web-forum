@@ -30,7 +30,6 @@ const Post = ({ match }) => {
                 </div>
                 <Comment />
                 <Comment />
-
                 <Comment />
                 <Comment />
                 <Comment />

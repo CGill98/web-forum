@@ -6,11 +6,16 @@ export const useSetImageSize = (image, setImage, imgLink) => {
     if (imgLink && !loaded) {
         var request = new XMLHttpRequest();
         request.open('GET', imgLink, true);
+        console.log("request opened")
+
         request.responseType = 'blob';
         request.onload = function() {
+            console.log("request onload")
+
             var reader = new FileReader();
             reader.readAsDataURL(request.response);
             reader.onload =  function(e){
+            console.log("reader onload")
 
                 const img = new Image();
                 img.onload = function() {
