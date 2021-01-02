@@ -1,0 +1,48 @@
+.loginform {
+
+    
+    margin: 0px;
+    margin-top: 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 100px;
+    height: 300px;
+}
+
+.loginform div {
+    font-size: 22px;
+    margin-bottom: 10px;
+    text-align: start;
+}
+
+.loginform input[type=text], .loginform input[type=password] {
+    height: 25px;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 20px;
+    outline: none;
+    border-radius: 6px;
+
+}
+
+.loginform input[type=text]:focus, .loginform input[type=password]:focus {
+    box-shadow: 0 0 8px rgb(255, 0, 0);
+    border: 1px solid rgb(180, 0, 0);
+}
+
+.loginbtn {
+    background-color:rgb(180, 0, 0);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.loginbtn:hover {
+    cursor: pointer;
+    background-color: rgb(140, 0, 0);
+}

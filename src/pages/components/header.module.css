@@ -5,6 +5,7 @@
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
 
 }
 
@@ -39,4 +40,20 @@
 .list li a {
     color: white;
     text-decoration: none;
+}
+
+.profilediv {
+    
+}
+
+.profilediv h3, .profilediv h4 {
+    text-align: center;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.profilediv h3:hover, .profilediv h4:hover{
+    color: orangered;
 }

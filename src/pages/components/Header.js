@@ -31,6 +31,20 @@ export default function Header() {
                     <Link to='/about'>About</Link>
                 </li>
             </ul>
+
+            <div className={style.profilediv}>
+              {false ?
+                <h3>Hi Sally Do</h3>:
+                <div>
+                <Link to='/login'>
+                  <h3>Login</h3>
+                </Link>
+                <Link to='/register'>
+                  <h4>Register</h4>
+                </Link>
+                </div>
+              }
+            </div>
         </div>
   )
 }

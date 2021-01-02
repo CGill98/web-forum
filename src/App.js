@@ -3,6 +3,9 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Topic from './pages/Topic'
 import Post from './pages/Post'
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,6 +27,9 @@ function App() {
           <Route path="/about">
             <About />
           </Route>
+          <Route exact path="/login" component={Login}/>
+          <Route exact path="/register" component={Register}/>
+
           <Route path="/:topic/:postID" component={Post}/>
           <Route path="/:topic" component={Topic} />
         </Switch>
