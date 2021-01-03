@@ -43,6 +43,12 @@
 }
 
 .profilediv {
+    display: flex;
+    justify-content: center;
+}
+
+.profilelinks {
+    display: flex;
     
 }
 

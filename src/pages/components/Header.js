@@ -35,13 +35,13 @@ export default function Header() {
             <div className={style.profilediv}>
               {false ?
                 <h3>Hi Sally Do</h3>:
-                <div>
-                <Link to='/login'>
-                  <h3>Login</h3>
-                </Link>
-                <Link to='/register'>
-                  <h4>Register</h4>
-                </Link>
+                <div className={style.profilelinks}>
+                  <Link to='/login'>
+                    <h3>Login</h3>
+                  </Link>
+                  <Link to='/register'>
+                    <h3>Register</h3>
+                  </Link>
                 </div>
               }
             </div>

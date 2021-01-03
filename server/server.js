@@ -7,7 +7,7 @@ app.use(cors())
 app.use('/uploads', express.static(__dirname + '/storage'));
 
 app.get('/api/topic/:topic', (req, res) => {
-    const topic = req.params.topic
+    //const topic = req.params.topic
 
     const topic = {
         id: "1",
@@ -46,6 +46,14 @@ app.get('/api/post/:post', (req, res) => {
             }]
     }
     res.json(post)
+})
+
+app.post('/api/register/:user', (req, res) => {
+    console.log('/api/register/:user')
+    const userobj = req.params.user;
+    console.log(userobj)
+
+    res.send('user registered')
 })
 
 app.use((req, res, next)=>{
