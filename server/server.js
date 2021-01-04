@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var cors = require('cors')
+const dbs = require('./dbs/dbs')
+
 
 app.use(cors())
 
@@ -50,8 +52,10 @@ app.get('/api/post/:post', (req, res) => {
 
 app.post('/api/register/:user', (req, res) => {
     console.log('/api/register/:user')
-    const userobj = req.params.user;
+    const userobj = JSON.parse(req.params.user);
+
     console.log(userobj)
+    dbs.writeUser(userobj)
 
     res.send('user registered')
 })
