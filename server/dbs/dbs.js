@@ -15,25 +15,36 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
  
   const db = client.db(dbName);
 
-  exports.writeUser = (user) => {
+  exports.writeUser = async (user) => {
     const userCol = db.collection('users')
     //console.log(userCol)
+    const findByEmail = await userCol.findOne({"email": user.email})
 
-    userCol.insertOne(user, (err, result)=> {
-        try {
-            console.log("inserted one")
-            console.log(user)
-            console.log(result)
-        }
-        catch (err) {
-            console.log(err)
-        }
-    })
+    if (findByEmail) {
+      console.log("found email")
+      return {err: true, clientmsg: 'account with that email already exists'}
+    }
+
+    const findByUserName = await userCol.findOne({"username": user.username})
+
+    if (findByUserName) {
+      return {err: true, clientmsg: 'account with that username already exists'}
+    }
+
+    const result = await userCol.insertOne(user)
+
+    console.log(result)
+
+    return result;
+
   }
  
-  client.close();
 });
 
+process.on('exit', ()=>{
+  console.log("exiting")
+
+})
 
 
 

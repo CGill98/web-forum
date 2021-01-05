@@ -50,14 +50,13 @@ app.get('/api/post/:post', (req, res) => {
     res.json(post)
 })
 
-app.post('/api/register/:user', (req, res) => {
+app.post('/api/register/:user', async (req, res) => {
     console.log('/api/register/:user')
     const userobj = JSON.parse(req.params.user);
 
     console.log(userobj)
-    dbs.writeUser(userobj)
-
-    res.send('user registered')
+    const result = await dbs.writeUser(userobj)
+    res.json(result)
 })
 
 app.use((req, res, next)=>{
