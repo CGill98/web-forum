@@ -8,7 +8,8 @@ const initFormState = {
     email: 'test@email.com',
     username: 'testuser',
     password: 'mytestpass',
-    passwordrentry: 'mytestpass'
+    passwordrentry: 'mytestpass',
+    form_error: '',
 }
 
 const reducer = (state, action) => {
@@ -21,6 +22,8 @@ const reducer = (state, action) => {
           return {...state, password: action.payload};
         case 'passwordrentry':
           return {...state, passwordrentry: action.payload};
+        case 'form_error':
+            return {...state, form_error: action.payload};
         default:
           return state
       }
@@ -33,7 +36,9 @@ const Register = () => {
         <div className={globalstyles.page}>
             <Header />
             <div className={globalstyles.content}>
-                <form className={styles.loginform} onSubmit={(e)=>register(e, state)}>
+
+                <form className={styles.loginform} onSubmit={(e)=>register(e, state, dispatch)}>
+                    {state.form_error && <div className={styles.formerror}>{state.form_error}</div>}
                     <div>Email</div>
                     <input type='text' name='email' placeholder="Example@mailservice.com" 
                         value={state.email} onChange={(e)=>dispatch({type: 'email', payload: e.target.value})}></input>
@@ -46,7 +51,6 @@ const Register = () => {
                     <input type='password' name='passwordrentry' placeholder='Repeat Password'
                         value={state.passwordrentry} onChange={(e)=>dispatch({type: 'passwordrentry', payload: e.target.value})}></input>
                     <input type='submit' value='Login' className={styles.loginbtn}></input>
-
                     
                 </form>
             </div>

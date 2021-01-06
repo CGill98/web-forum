@@ -22,13 +22,15 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
 
     if (findByEmail) {
       console.log("found email")
-      return {err: true, clientmsg: 'account with that email already exists'}
+      return {error: true, clientmsg: 'Account with that email already exists'}
     }
 
     const findByUserName = await userCol.findOne({"username": user.username})
 
     if (findByUserName) {
-      return {err: true, clientmsg: 'account with that username already exists'}
+      console.log("found username")
+
+      return {error: true, clientmsg: 'Account with that username already exists'}
     }
 
     const result = await userCol.insertOne(user)

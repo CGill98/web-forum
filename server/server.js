@@ -56,6 +56,7 @@ app.post('/api/register/:user', async (req, res) => {
 
     console.log(userobj)
     const result = await dbs.writeUser(userobj)
+    console.log(result)
     res.json(result)
 })
 

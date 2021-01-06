@@ -46,3 +46,15 @@
     cursor: pointer;
     background-color: rgb(140, 0, 0);
 }
+
+.formerror {
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    margin: auto;
+    z-index: 1;
+    position: relative;
+    background-color: rgb(20, 20, 0);
+    border-radius: 6px;
+    padding: 10px;
+}
