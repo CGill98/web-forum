@@ -1,5 +1,12 @@
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
+
+const hash = value => { //required for verifying passwords
+  value.salt = crypto.randomBytes(6).toString('hex').slice(0, 12)
+  value.password = crypto.createHash('sha256').update(`${value.salt}${value.password}`).digest('base64')
+  return value
+}
+
 require('dotenv').config()
  
 // Connection URL
@@ -38,6 +45,29 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
     console.log(result)
 
     return result;
+
+  }
+
+  exports.getUser = async (user) => {
+    const verifyUser = () => {
+
+    }
+
+    const userCol = db.collection('users')
+    //console.log(userCol)
+    let data = userCol.findOne({email: user.usernameemail})
+
+    if (data) {
+      return verifyUser(data)
+    } else { //try again with username
+      data = userCol.findOne({username: user.usernameemail})
+      if (data) {
+        return verifyUser(data)
+      } else {
+        //return error 
+        return  {error: true, clientmsg: 'Account with that email or username was not found.'}
+      }
+    }
 
   }
  

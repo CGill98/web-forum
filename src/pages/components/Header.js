@@ -8,8 +8,12 @@ import {
 import style from './header.module.css'
 //logo colour #BA1500
 import logo from '../../assets/images/orangutan-red.png'
+import {useStore} from 'react-redux'
 
 export default function Header() {
+  const user = useStore().getState().user
+  console.log(user)
+
   return (
         <div className={style.header}>
           <Link to='/'>
@@ -33,7 +37,7 @@ export default function Header() {
             </ul>
 
             <div className={style.profilediv}>
-              {false ?
+              {user.name ?
                 <h3>Hi Sally Do</h3>:
                 <div className={style.profilelinks}>
                   <Link to='/login'>

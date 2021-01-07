@@ -60,6 +60,16 @@ app.post('/api/register/:user', async (req, res) => {
     res.json(result)
 })
 
+app.get('/api/login/:user', async (req, res) => {
+    console.log('/api/register/:user')
+    const userobj = JSON.parse(req.params.user);
+
+    console.log(userobj)
+    const result = await dbs.getUser(userobj)
+    console.log(result)
+    res.json(result)
+})
+
 app.use((req, res, next)=>{
     res.status(404).send('<h1> Page not found </h1>');
  });
