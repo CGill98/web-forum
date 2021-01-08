@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,8 +11,12 @@ import logo from '../../assets/images/orangutan-red.png'
 import {useStore} from 'react-redux'
 
 export default function Header() {
-  const user = useStore().getState().user
-  console.log(user)
+  let state = useStore().getState()
+  const [r, rerender] = useState(true)
+  
+  useEffect(()=>{
+    rerender(true)
+  }, [useStore().getState()])
 
   return (
         <div className={style.header}>
@@ -37,8 +41,8 @@ export default function Header() {
             </ul>
 
             <div className={style.profilediv}>
-              {user.name ?
-                <h3>Hi Sally Do</h3>:
+              {state.user.name ?
+                <h3>{state.user.name}</h3>:
                 <div className={style.profilelinks}>
                   <Link to='/login'>
                     <h3>Login</h3>

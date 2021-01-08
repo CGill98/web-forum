@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react'
+import React, {useReducer, useCallback} from 'react'
 import Header from './components/Header'
 import globalstyles from './Global.module.css'
 import styles from './Login.module.css'
@@ -29,8 +29,15 @@ const Login = () => {
     const globalDispatch = useDispatch()
 
     const handleSubmit = (e) => {
-        const result = login(e)
-        console.log(result)
+        const result = login(e, state)
+        result.then(e => {
+            console.log(e)
+            if (e.err) {
+                dispatch({type: "form_error", payload:e.clientmsg})
+            } else {
+                globalDispatch({type: 'login', payload:e.username})
+            }
+        })
     }
 
     return (
@@ -38,10 +45,12 @@ const Login = () => {
             <Header />
             <div className={globalstyles.content}>
                 <form className={styles.loginform} onSubmit={e=>handleSubmit(e)}>
+                    {state.form_error && <div className={styles.formerror}>{state.form_error}</div>}
+
                     <div>Username or Email</div>
-                    <input type='text' placeholder="UsernameEmail" value={state.usernameemail} onChange={(e)=>dispatch({type: 'email', payload: e.target.value})}></input>
+                    <input type='text' placeholder="UsernameEmail" value={state.emailusername} onChange={(e)=>dispatch({type: 'emailusername', payload: e.target.value})}></input>
                     <div>Password</div>
-                    <input type='password' placeholder="password" value={state.password} onChange={(e)=>dispatch({type: 'email', payload: e.target.value})}></input>
+                    <input type='password' value={state.password} onChange={(e)=>dispatch({type: 'password', payload: e.target.value})}></input>
                     <input type='submit' value='Login' className={styles.loginbtn}></input>
                     <div>
                         Forgot your details?

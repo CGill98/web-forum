@@ -1,9 +1,14 @@
 //login reducer
 
-export default function user(state = {name: ""}, action) {
+export default function userReducer(state = {name: ""}, action) {
     switch (action.type) {
       case 'login':
-        return {state, name: action.payload}
+        console.log("login")
+        console.log(action)
+        console.log({...state, name: action.payload})
+        return {...state, name: action.payload}
+      case undefined: 
+        return {name: ""}
       default:
         return state
     }

@@ -1,10 +1,13 @@
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
+const crypto = require('crypto')
 
-const hash = value => { //required for verifying passwords
-  value.salt = crypto.randomBytes(6).toString('hex').slice(0, 12)
-  value.password = crypto.createHash('sha256').update(`${value.salt}${value.password}`).digest('base64')
-  return value
+const hash = str => { //required for verifying passwords
+  return crypto.createHash('sha256').update(str).digest('base64')
+}
+
+const errobj = msg => { //required for verifying passwords
+  return {err: true, clientmsg: msg}
 }
 
 require('dotenv').config()
@@ -48,19 +51,30 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
 
   }
 
+  /****************************************************************************************************************************************/
+  /****************************************************************************************************************************************/
   exports.getUser = async (user) => {
-    const verifyUser = () => {
+    const verifyUser = (data) => {
+        const pass = user.password
+        const storedPass = data.password
+        const salt = data.salt
+        if (hash(`${salt}${pass}`) === storedPass) {
+          return {loginsuccess: true, username: data.username}
+        } else {
+          //password is wrong
+          return errobj('The password entered was incorrect')
+        }
 
     }
 
     const userCol = db.collection('users')
     //console.log(userCol)
-    let data = userCol.findOne({email: user.usernameemail})
-
+    let data = await userCol.findOne({email: user.emailusername})
+    console.log(data)
     if (data) {
       return verifyUser(data)
     } else { //try again with username
-      data = userCol.findOne({username: user.usernameemail})
+      data = await userCol.findOne({username: user.emailusername})
       if (data) {
         return verifyUser(data)
       } else {
