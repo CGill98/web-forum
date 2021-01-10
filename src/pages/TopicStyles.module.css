@@ -33,7 +33,19 @@
 
 .newpostform > input {
     width: 300px;
+
 }
+
+.newpostform > input[type=text] {
+    background-color: rgb(40, 40, 40);
+    color: white;
+    border: 1px solid rgb(20, 20, 0);
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 6px;
+    outline: none;
+}
+
 
 .textarea {
 
@@ -42,10 +54,12 @@
     width: 100%;
     min-width: 700px;
     padding: 5px;
-    background-color: #f8f8f8;
-    border: 2px solid #ccc;
+    background-color: rgb(40, 40, 40);
+    color: white;
+    border: 1px solid rgb(20, 20, 0);
+
     border-radius: 10px;
-    overflow: scroll;
+    overflow-y: scroll;
 
     font-family: Arial;
     font-size: 15px;
@@ -53,6 +67,25 @@
 
     resize: none;
 }
+
+textarea::-webkit-scrollbar {
+    width: 1em;
+    border-radius: 6px;
+}
+  
+textarea::-webkit-scrollbar-track {
+    background-color: rgb(30, 30, 10);
+}
+
+textarea::-webkit-scrollbar-track:hover {
+    cursor: pointer;
+}
+  
+textarea::-webkit-scrollbar-thumb {
+    background-color: rgba(10, 10,0, 1);
+    outline: 1px solid black;
+}
+  
 
 .submitbtn {
     background-color: rgb(180, 0, 0);
@@ -68,7 +101,9 @@
 }
 
 .submitbtn:hover {
-cursor: pointer;
+    cursor: pointer;
+    background-color: rgb(140, 0, 0);
+
 }
 
 .postlinkdivcontainer {

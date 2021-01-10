@@ -35,7 +35,8 @@ function App() {
             <Route exact path="/login" component={Login}/>
             <Route exact path="/register" component={Register}/>
 
-            <Route path="/:topic/:postID" component={Post}/>
+            <Route path="/:topic/post/:postID" component={Post}/>
+            <Route path="/:topic/:page" component={Topic} />
             <Route path="/:topic" component={Topic} />
           </Switch>
         </Router>

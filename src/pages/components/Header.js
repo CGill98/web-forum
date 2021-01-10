@@ -8,15 +8,16 @@ import {
 import style from './header.module.css'
 //logo colour #BA1500
 import logo from '../../assets/images/orangutan-red.png'
-import {useStore} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 
 export default function Header() {
-  let state = useStore().getState()
-  const [r, rerender] = useState(true)
-  
-  useEffect(()=>{
-    rerender(true)
-  }, [useStore().getState()])
+  let user = useSelector(state => state.user)
+  const [usrPrsd, setUsrPrsd] = useState(true)
+  const globalDispatch = useDispatch()
+
+  const logout = () => {
+    globalDispatch({type: 'logout'})
+  }
 
   return (
         <div className={style.header}>
@@ -41,8 +42,19 @@ export default function Header() {
             </ul>
 
             <div className={style.profilediv}>
-              {state.user.name ?
-                <h3>{state.user.name}</h3>:
+              {user.name ?
+                <>
+                  {usrPrsd ? <h3 className={style.username} onClick={()=>setUsrPrsd(!usrPrsd)}>Hi {user.name}</h3>:
+                    <div className={style.profilelinks}> 
+                      <h3 onClick={logout}>Log Out</h3>
+                      <h3 onClick={()=>setUsrPrsd(!usrPrsd)}>Don't Log Out</h3>
+                      <Link to='/settings'>
+                        <h4>Settings</h4>
+                      </Link>
+
+                    </div>}
+                </>
+                :
                 <div className={style.profilelinks}>
                   <Link to='/login'>
                     <h3>Login</h3>

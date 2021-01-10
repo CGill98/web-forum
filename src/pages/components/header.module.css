@@ -63,3 +63,7 @@
 .profilediv h3:hover, .profilediv h4:hover{
     color: orangered;
 }
+
+.username:hover {
+    cursor: pointer;
+}
