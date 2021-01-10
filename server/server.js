@@ -70,6 +70,12 @@ app.get('/api/login/:user', async (req, res) => {
     res.json(result)
 })
 
+app.post('/api/post/:post', async (req, res) => {
+    console.log('/api/post/:post')
+    const postobj = JSON.parse(req.params.post);
+    console.log(postobj)
+})
+
 app.use((req, res, next)=>{
     res.status(404).send('<h1> Page not found </h1>');
  });
