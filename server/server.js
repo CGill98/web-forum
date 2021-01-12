@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var cors = require('cors')
 const dbs = require('./dbs/dbs')
+const zlib = require('zlib')
 
 
 app.use(cors())
@@ -27,7 +28,7 @@ app.get('/api/topic/:topic', (req, res) => {
     }
     res.send("hi")
 })
-
+/*
 app.get('/api/post/:post', (req, res) => {
     const postobj = req.params.post
     //a post object should have a topic
@@ -48,7 +49,7 @@ app.get('/api/post/:post', (req, res) => {
             }]
     }
     res.json(post)
-})
+})*/
 
 app.post('/api/register/:user', async (req, res) => {
     console.log('/api/register/:user')
@@ -72,8 +73,11 @@ app.get('/api/login/:user', async (req, res) => {
 
 app.post('/api/post/:post', async (req, res) => {
     console.log('/api/post/:post')
-    const postobj = JSON.parse(req.params.post);
+    let postobj 
+    console.log(req.params.post)
+    const result = await dbs.writePost(postobj)
     console.log(postobj)
+    res.json(result)
 })
 
 app.use((req, res, next)=>{
