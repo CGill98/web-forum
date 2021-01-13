@@ -1,6 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const crypto = require('crypto')
+const zlib = require('zlib')
 
 const hash = str => { //required for verifying passwords
   return crypto.createHash('sha256').update(str).digest('base64')
@@ -90,6 +91,12 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
   /****************************************************************************************************************************************/
 
   exports.writePost = async (post) => {
+    console.log("writePost Called")
+
+    const unzipped = zlib.gunzip(post, ()=>{
+      
+    })
+    console.log(unzipped)
     const postCol = db.collection('posts')
     //console.log(userCol)
 

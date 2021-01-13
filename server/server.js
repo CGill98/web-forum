@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var cors = require('cors')
 const dbs = require('./dbs/dbs')
-const zlib = require('zlib')
+
 
 
 app.use(cors())
@@ -71,11 +71,11 @@ app.get('/api/login/:user', async (req, res) => {
     res.json(result)
 })
 
-app.post('/api/post/:post', async (req, res) => {
+app.post('/api/post', async (req, res) => {
     console.log('/api/post/:post')
-    let postobj 
-    console.log(req.params.post)
-    const result = await dbs.writePost(postobj)
+    let postzip = req.body
+    console.log(req.body)
+    const result = await dbs.writePost(postzip)
     console.log(postobj)
     res.json(result)
 })

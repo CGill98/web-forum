@@ -1,4 +1,7 @@
 //use zlib
+import {pipeline} from 'stream'
+//https://web.dev/fetch-upload-streaming/
+
 const zlib = require('zlib')
 
 
@@ -13,14 +16,14 @@ const post = async (event, state, dispatch) => {
     console.log(compressedData)
 
 
-    const result = await fetch(`http://127.0.0.1:4000/api/post/${compressedData}`, {
+    const result = await fetch(`http://127.0.0.1:4000/api/post`, {
                                 method: 'POST',
                                 mode: 'cors',
+                                body: compressedData,
                                 headers: {
                                   'Content-Encoding': 'gzip',
                                 }
-                            }).then(res => res.json())
-                              .catch(err => {console.log(err); return err})
+                            }).then(res => res.json).catch(err => {console.log(err); return err})
     
     console.log(result)
     if (result.err) {
