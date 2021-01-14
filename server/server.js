@@ -2,10 +2,15 @@ var express = require('express');
 var app = express();
 var cors = require('cors')
 const dbs = require('./dbs/dbs')
-
-
+const bodyParser = require('body-parser')
 
 app.use(cors())
+
+//app.use(bodyParser.urlencoded())
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+app.use(bodyParser.json({type: 'application/json'}))
 
 app.use('/uploads', express.static(__dirname + '/storage'));
 
@@ -71,12 +76,23 @@ app.get('/api/login/:user', async (req, res) => {
     res.json(result)
 })
 
+app.get('/api/posts/:topic', async (req, res) => {
+    console.log('/api/posts/:topic')
+    const topic = req.params.topic;
+
+    const result = await dbs.getPosts(topic)
+    console.log(result)
+    result.toArray((err, data) => {
+        res.json(data)
+    })
+})
+
 app.post('/api/post', async (req, res) => {
-    console.log('/api/post/:post')
-    let postzip = req.body
+    console.log('/api/post')
     console.log(req.body)
-    const result = await dbs.writePost(postzip)
-    console.log(postobj)
+    //const postzip = req.body
+    const result = await dbs.writePost(req.body)
+    //console.log(postobj)
     res.json(result)
 })
 

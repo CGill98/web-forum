@@ -1,9 +1,3 @@
-//use zlib
-import {pipeline} from 'stream'
-//https://web.dev/fetch-upload-streaming/
-
-const zlib = require('zlib')
-
 
 const post = async (event, state, dispatch) => {
     event.preventDefault()
@@ -11,19 +5,21 @@ const post = async (event, state, dispatch) => {
     let {form_error, ...value} = state; //copy all info execept form error
     console.log(value)
     value.username = 'derek'
+    value.timeAdded = new Date().getTime() //UTC time since 1970...
     const jsonStr = JSON.stringify(value)
-    const compressedData = zlib.Gzip(jsonStr)
-    console.log(compressedData)
+
+    //const compressedData = zlib.Gzip(jsonStr)
+    //console.log(compressedData)
 
 
     const result = await fetch(`http://127.0.0.1:4000/api/post`, {
                                 method: 'POST',
                                 mode: 'cors',
-                                body: compressedData,
+                                body: jsonStr,
                                 headers: {
-                                  'Content-Encoding': 'gzip',
+                                  'Content-Type': 'application/json',
                                 }
-                            }).then(res => res.json).catch(err => {console.log(err); return err})
+                            }).then(res => res.json()).catch(err => {console.log(err); return err})
     
     console.log(result)
     if (result.err) {

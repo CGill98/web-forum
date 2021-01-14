@@ -92,11 +92,6 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
 
   exports.writePost = async (post) => {
     console.log("writePost Called")
-
-    const unzipped = zlib.gunzip(post, ()=>{
-      
-    })
-    console.log(unzipped)
     const postCol = db.collection('posts')
     //console.log(userCol)
 
@@ -105,6 +100,17 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
     console.log(result)
 
     return result;
+
+  }
+
+  exports.getPosts = async (topic) => {
+    console.log("getPosts Called")
+    const postCol = db.collection('posts')
+    //console.log(userCol)
+
+    return await postCol.find({topic: topic})
+
+
 
   }
  
