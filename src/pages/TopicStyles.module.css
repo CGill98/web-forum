@@ -116,3 +116,7 @@ textarea::-webkit-scrollbar-thumb {
     align-items: center;
 
 }
+
+.formerror {
+    color: rgb(180, 0, 0) !important;
+}

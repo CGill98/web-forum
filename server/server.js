@@ -10,7 +10,10 @@ app.use(cors())
 app.use(bodyParser.urlencoded({
     extended: true
   }));
+
 app.use(bodyParser.json({type: 'application/json'}))
+app.use(bodyParser.json({type: 'multipart/form-data'}))
+
 
 app.use('/uploads', express.static(__dirname + '/storage'));
 
