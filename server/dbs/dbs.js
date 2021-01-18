@@ -97,7 +97,7 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
 
     const result = await postCol.insertOne(post)
 
-    console.log(result)
+    //console.log(result)
 
     return result;
 

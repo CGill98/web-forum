@@ -31,7 +31,6 @@ const formReducer = (state, action) => {
             return {...state, text: action.payload}
         case 'image':
             return {...state, image: action.payload}   
-
         case 'form_error':
             return {...state, form_error: action.payload};
         default:
@@ -83,7 +82,7 @@ Quisque eleifend egestas ex, at vehicula risus tempus vel. Maecenas bibendum max
                         <label>Image (PNG, JPG, GIF)</label>
                         <input type='file' name='image' ref={imageInput} onChange={(e)=>{
                             console.log(e.target.files)
-                            if (['image/png','image/jpg','image/gif'].includes(e.target.files[0].type)) {
+                            if (['image/png','image/jpeg','image/gif'].includes(e.target.files[0].type)) {
                                 dispatch({type: 'image', payload: e.target.files[0]})
                             } else {
                                 //change state 'this file type is not allowed'

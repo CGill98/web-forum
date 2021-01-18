@@ -3,17 +3,24 @@ var app = express();
 var cors = require('cors')
 const dbs = require('./dbs/dbs')
 const bodyParser = require('body-parser')
+const fs = require('fs')
+
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
+var utf7 = require('utf7');
 
 app.use(cors())
 
 //app.use(bodyParser.urlencoded())
 app.use(bodyParser.urlencoded({
-    extended: true
+    extended: true,
+    limit: '50mb',
+    parameterLimit: 10000
   }));
 
+app.use(bodyParser.json())
 app.use(bodyParser.json({type: 'application/json'}))
-app.use(bodyParser.json({type: 'multipart/form-data'}))
-
+//app.use(bodyParser.json({type: 'multipart/form-data', limit: '50mb'}))
 
 app.use('/uploads', express.static(__dirname + '/storage'));
 
@@ -90,11 +97,30 @@ app.get('/api/posts/:topic', async (req, res) => {
     })
 })
 
-app.post('/api/post', async (req, res) => {
+app.post('/api/post', upload.single('image'), async (req, res) => {
     console.log('/api/post')
+    console.log(req.file)
+    const formData = {
+        title: req.body.title
+    }
     console.log(req.body)
     //const postzip = req.body
     const result = await dbs.writePost(req.body)
+    
+
+
+    if (req.file) {
+        console.log(`./storage/${req.file.originalname}`)
+        //const data = fs.readFileSync(req.file.path, {encoding:'utf7', flag:'r'}); 
+        
+
+        //const filedecoded = utf7.decode(data)
+        //const utf8file = utf8.encode(filedecoded)
+        fs.writeFile(`./storage/${req.file.originalname}`, req.file.buffer, 'utf8',(err)=>{
+            if (err) return console.log(err);
+        })
+    }
+
     //console.log(postobj)
     res.json(result)
 })
