@@ -66,7 +66,7 @@ const Topic = ({ match }) => {
                 <h1 className={globalstyles.centeredtext}>{pageTitle}</h1>
                 <div className={topicstyles.formdiv}>   
                     <h2>Make a Post</h2>
-                    <form className={topicstyles.newpostform} onSubmit={e => post(e, state, dispatch)}/*createPost()*/>
+                    <form className={topicstyles.newpostform} encType='multipart/form-data' onSubmit={e => post(e, state, dispatch)}/*createPost()*/>
                         {state.form_error && <h2 className={topicstyles.formerror}>{state.form_error}</h2>}
                         
                         <label>Post Title</label>
@@ -80,7 +80,7 @@ Nunc mollis elit et ipsum porta gravida. Curabitur elementum vehicula diam eu po
 Quisque eleifend egestas ex, at vehicula risus tempus vel. Maecenas bibendum maximus sem non tempus. Ut rhoncus neque a dapibus consectetur. Sed ornare dignissim orci in vestibulum. Donec eget odio sed nisi faucibus sagittis. Quisque accumsan, elit id ultricies facilisis, leo justo accumsan diam, a mattis massa lacus nec massa. Aliquam mattis tellus tristique augue sodales egestas quis quis elit. Nam eu venenatis metus, vel lacinia purus.
                         </textarea>
                         <label>Image (PNG, JPG, GIF)</label>
-                        <input type='file' name='image' ref={imageInput} onChange={(e)=>{
+                        <input type='file' name='image' ref={imageInput} charSet='utf-8' onChange={(e)=>{
                             console.log(e.target.files)
                             if (['image/png','image/jpeg','image/gif'].includes(e.target.files[0].type)) {
                                 dispatch({type: 'image', payload: e.target.files[0]})

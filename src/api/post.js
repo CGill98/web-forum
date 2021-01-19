@@ -31,7 +31,7 @@ const post = async (event, state, dispatch) => {
                                 body: formPost,
                                 /*
                                 headers: {
-                                  'Content-Type': 'multipart/form-data',
+                                  'Content-Type': 'undefined; charset=UTF-8;',
                                 }*/
                             }).then(res => res.json()).catch(err => {console.log(err); return err})
     

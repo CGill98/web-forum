@@ -91,7 +91,7 @@ app.get('/api/posts/:topic', async (req, res) => {
     const topic = req.params.topic;
 
     const result = await dbs.getPosts(topic)
-    console.log(result)
+    //console.log(result)
     result.toArray((err, data) => {
         res.json(data)
     })
@@ -100,15 +100,17 @@ app.get('/api/posts/:topic', async (req, res) => {
 app.post('/api/post', upload.single('image'), async (req, res) => {
     console.log('/api/post')
     console.log(req.file)
+    console.log(req.headers)
     const formData = {
         title: req.body.title
     }
     console.log(req.body)
     //const postzip = req.body
-    const result = await dbs.writePost(req.body)
+    const post = {...req.body, image: req.file.filename}
+    const result = await dbs.writePost(post)
     
 
-
+    /*
     if (req.file) {
         console.log(`./storage/${req.file.originalname}`)
         //const data = fs.readFileSync(req.file.path, {encoding:'utf7', flag:'r'}); 
@@ -116,10 +118,11 @@ app.post('/api/post', upload.single('image'), async (req, res) => {
 
         //const filedecoded = utf7.decode(data)
         //const utf8file = utf8.encode(filedecoded)
+        console.log(req.file)
         fs.writeFile(`./storage/${req.file.originalname}`, req.file.buffer, 'utf8',(err)=>{
             if (err) return console.log(err);
         })
-    }
+    }*/
 
     //console.log(postobj)
     res.json(result)
