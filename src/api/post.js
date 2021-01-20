@@ -6,15 +6,17 @@ const post = async (event, state, dispatch) => {
     console.log(value)
     value.username = 'derek'
     value.timeAdded = new Date().getTime() //UTC time since 1970...
-    let formPost = new FormData()
+
+    console.log(event.target)
+    let formPost = new FormData(event.target)
    
-    formPost.append('username', value.username)
-    formPost.append('timeAdded', value.timeAdded)
-    formPost.append('title', value.title)
-    formPost.append('text', value.text)
-    formPost.append('topic', value.topic)
+    formPost.set('username', value.username)
+    formPost.set('timeAdded', value.timeAdded)
+    formPost.set('title', value.title)
+    formPost.set('text', value.text)
+    formPost.set('topic', value.topic)
     if (value.image.name) {
-      formPost.append('image', value.image, value.image.name)
+      formPost.set('image', value.image, value.image.name)
     }
 
 
@@ -33,7 +35,7 @@ const post = async (event, state, dispatch) => {
                                 headers: {
                                   'Content-Type': 'undefined; charset=UTF-8;',
                                 }*/
-                            }).then(res => res.json()).catch(err => {console.log(err); return err})
+                            }).then(res => res.text()).catch(err => {console.log(err); return err})
     
     console.log(result)
     if (result.err) {

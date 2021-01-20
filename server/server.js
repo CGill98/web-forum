@@ -24,6 +24,17 @@ app.use(bodyParser.json({type: 'application/json'}))
 
 app.use('/uploads', express.static(__dirname + '/storage'));
 
+const storage = multer.diskStorage({
+destination: function (req, file, cb) {
+    cb(null, '/uploads')
+},
+filename: function (req, file, cb) {
+    const parts = file.mimetype.split("/")
+    cb(null, file.fieldname + '-' + Date.now() + '.' + parts[1])
+}
+})
+
+
 app.get('/api/topic/:topic', (req, res) => {
     //const topic = req.params.topic
 
@@ -110,22 +121,24 @@ app.post('/api/post', upload.single('image'), async (req, res) => {
     const result = await dbs.writePost(post)
     
 
-    /*
+    
     if (req.file) {
         console.log(`./storage/${req.file.originalname}`)
-        //const data = fs.readFileSync(req.file.path, {encoding:'utf7', flag:'r'}); 
+        //const data = fs.readFileSync(req.file.path, {encoding:'utf8', flag:'r'}); 
         
 
         //const filedecoded = utf7.decode(data)
         //const utf8file = utf8.encode(filedecoded)
+        /*
         console.log(req.file)
-        fs.writeFile(`./storage/${req.file.originalname}`, req.file.buffer, 'utf8',(err)=>{
+        fs.writeFile(`./storage/${req.file.originalname}`, req.file.path, 'utf8',(err)=>{
             if (err) return console.log(err);
-        })
-    }*/
+        })*/
+    }
 
     //console.log(postobj)
-    res.json(result)
+    console.log(__dirname + '/' + req.file.path)
+    res.redirect('/uploads/' + req.file.filename)
 })
 
 app.use((req, res, next)=>{
