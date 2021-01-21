@@ -122,26 +122,8 @@ app.post('/api/post', upload.single('image'), async (req, res) => {
     //const postzip = req.body
     const post = {...req.body, image: req.file.filename}
     const result = await dbs.writePost(post)
-    
 
-    
-    if (req.file) {
-        //console.log(`./storage/${req.file.originalname}`)
-        //const data = fs.readFileSync(req.file.path, {encoding:'utf8', flag:'r'}); 
-        
-
-        //const filedecoded = utf7.decode(data)
-        //const utf8file = utf8.encode(filedecoded)
-        /*
-        console.log(req.file)
-        fs.writeFile(`./storage/${req.file.originalname}`, req.file.path, 'utf8',(err)=>{
-            if (err) return console.log(err);
-        })*/
-    }
-
-    //console.log(postobj)
-    console.log(__dirname + '/' + req.file.path)
-    res.redirect('/uploads/' + req.file.filename)
+    res.json(result)
 })
 
 app.use((req, res, next)=>{

@@ -5,30 +5,43 @@ import homestyles from '../HomeStyles.module.css'
 import './PostDivLink.css'
 
 //CONVERT THIS TO A POST 'ADVERTISEMENT'
-const PostDivLink = ({ trending, imgLink, id }) => {
+const PostDivLink = ({ trending, imgLink, id, postData }) => {
     
     const [image, setImage] = useState({
         width: 0,//file
         height: 0,
         ratio: 1,//width/height
-        webWidth: 0,//inbrowser
-        webHeight: 0, 
+        webWidth: 100,//inbrowser
+        webHeight: 100, 
     })
 
+    //useSetImageSize(image, setImage, imgLink)
+    
 
     //useSetImageSize(imgLink, Loaded)
     
-    useSetImageSize(image, setImage, imgLink)
+    console.log(postData)
+    if (postData) {
+        imgLink = `http:127.0.0.1:4000/uploads/${postData.image}`
+        console.log(imgLink)
+        //setImage({...image, webWidth: 100, webHeight: 100})
+
+    }
     
 
 
     useEffect(()=>{
+
+
+
         if (document.getElementById(id)) {
             const titleWidth = 300
             const imgWidth = image.webWidth
             document.getElementById(id).style.width = `${titleWidth < imgWidth ? imgWidth + 40 : titleWidth + 40}px`
+            console.log(document.getElementById(id).childNodes[0].childNodes[1].childNodes[0])
+            document.getElementById(id).childNodes[0].childNodes[1].childNodes[0].src = imgLink
         }
-    })
+    }, [])
 
 
     return (

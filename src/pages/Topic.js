@@ -49,15 +49,16 @@ const Topic = ({ match }) => {
 
     useEffect(() => {
         dispatch({type: 'topic', payload: topic})
+        console.log("get posts")
 
         getPosts(topic, dispatch).then(p => {
             setPosts(p)
         })
     }, [])
-
+    /*
     useEffect(() => {
         console.log(posts)
-    }, [posts])
+    }, [posts])*/
 
     return (
         <div className={globalstyles.page}>
@@ -100,7 +101,7 @@ Quisque eleifend egestas ex, at vehicula risus tempus vel. Maecenas bibendum max
                     <PostDivLink id={3}/>
                     <PostDivLink id={4}/>
                     <PostDivLink id={5}/>
-                    {posts.length !== 0 && posts.map((p, index) => <PostDivLink id={6} key={index}/>)}
+                    {posts.length !== 0 && posts.map((p, index) => <PostDivLink postData={p} id={6} key={index}/>)}
                     
                 </div>
                 <div>
