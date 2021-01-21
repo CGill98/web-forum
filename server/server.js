@@ -6,7 +6,6 @@ const bodyParser = require('body-parser')
 const fs = require('fs')
 
 var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
 var utf7 = require('utf7');
 
 app.use(cors())
@@ -26,13 +25,19 @@ app.use('/uploads', express.static(__dirname + '/storage'));
 
 const storage = multer.diskStorage({
 destination: function (req, file, cb) {
-    cb(null, '/uploads')
+    cb(null, './storage/')
 },
 filename: function (req, file, cb) {
     const parts = file.mimetype.split("/")
-    cb(null, file.fieldname + '-' + Date.now() + '.' + parts[1])
+    const path = file.fieldname + '-' + Date.now() + '.' + parts[1]
+    console.log("filename")
+    console.log(path)
+    cb(null, path)
 }
 })
+
+var upload = multer({storage: storage})
+
 
 
 app.get('/api/topic/:topic', (req, res) => {
@@ -112,9 +117,7 @@ app.post('/api/post', upload.single('image'), async (req, res) => {
     console.log('/api/post')
     console.log(req.file)
     console.log(req.headers)
-    const formData = {
-        title: req.body.title
-    }
+
     console.log(req.body)
     //const postzip = req.body
     const post = {...req.body, image: req.file.filename}
@@ -123,7 +126,7 @@ app.post('/api/post', upload.single('image'), async (req, res) => {
 
     
     if (req.file) {
-        console.log(`./storage/${req.file.originalname}`)
+        //console.log(`./storage/${req.file.originalname}`)
         //const data = fs.readFileSync(req.file.path, {encoding:'utf8', flag:'r'}); 
         
 
