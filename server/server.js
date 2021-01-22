@@ -113,6 +113,14 @@ app.get('/api/posts/:topic', async (req, res) => {
     })
 })
 
+app.get('/api/image/:file', async (req, res) => {
+    console.log('/api/image/:file')
+    const file = req.params.file;
+
+    res.sendFile(`C:\\Users\\Cooper\\VSCodeWorkSpace\\web-forum\\server\\storage/${file}`)
+})
+
+
 app.post('/api/post', upload.single('image'), async (req, res) => {
     console.log('/api/post')
     console.log(req.file)
