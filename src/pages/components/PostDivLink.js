@@ -12,54 +12,32 @@ const PostDivLink = ({ trending, id, postData }) => {
         width: 0,//file
         height: 0,
         ratio: 1,//width/height
-        webWidth: 300,//inbrowser
-        webHeight: 100, 
+        webWidth: 200,//inbrowser
+        webHeight: 300, 
     })
-
-    const [imgLink, setImgLink] = useState(`http://127.0.0.1:4000/api/image/${postData.image}`)
-    const [imgSrc, setImgSrc] = useState(``)
-
-
-    //useSetImageSize(image, setImage, imgLink)
-   
-
-    //useSetImageSize(imgLink, Loaded)
-    /*
     console.log(postData)
-    if (postData) {
-        imgLink = `http:127.0.0.1:4000/uploads/${postData.image}`
-        console.log(imgLink)
-        //setImage({...image, webWidth: 100, webHeight: 100})
 
-    }*/
-    //imgLink = `${process.env.REACT_APP_SERVER_PUBLIC}${postData.image}`
-    //imgLink = `../../server/storage/${postData.image}`
-    //imgLink = `http:127.0.0.1:4000/uploads/${postData.image}`
-    console.log(imgLink)
-
+    const img = postData !== undefined ? `http://127.0.0.1:4000/api/image/${postData.image}` : ''
+    const postId = postData !== undefined ? postData._id : ''
     
-                  
+    const [imgLink, setImgLink] = useState(img)
     useEffect(()=>{
-        
-        fetch(imgLink, {
-            mode: 'cors'
-        }).then(res => console.log(res))
-            .catch(e => console.log(e)) 
-        /*
+        if (img) {
+            var imageHelper = new Image();
     
-        if (document.getElementById(id)) {
-            const titleWidth = 300
-            const imgWidth = image.webWidth
-            document.getElementById(id).style.width = `${titleWidth < imgWidth ? imgWidth + 40 : titleWidth + 40}px`
-            console.log(document.getElementById(id).childNodes[0].childNodes[1].childNodes[0])
-            document.getElementById(id).childNodes[0].childNodes[1].childNodes[0].src = imgLink
-        }*/
-    }, [imgLink])
+            imageHelper.onload = function(){
+                setImage({...imageHelper, webWidth: imageHelper.width * (250 / imageHelper.height), webHeight: 250})
+            }
+        
+            imageHelper.src = img;
+        }
+    }, [])
+
 
 
     return (
     <div className={homestyles.trendingpost} id={id}>
-        <Link to='/philosophy/1'>
+        <Link to={`/philosophy/post/${postId}`}>
             <h2>The Problem of Induction</h2> 
             {trending && <h3>On Philosophy</h3>}
             <div className={homestyles.trendingpostcontent}>
