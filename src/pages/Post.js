@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Header from './components/Header'
 import Comment from './components/Comment'
 import FloatingForm from './components/FloatingForm'
@@ -14,6 +14,31 @@ const Post = ({ match }) => {
     const {topic, postID} = useParams();
     console.log(topic)
     console.log(postID)
+
+    const [image, setImage] = useState({
+        width: 0,//file
+        height: 0,
+        ratio: 1,//width/height
+        webWidth: 200,//inbrowser
+        webHeight: 300, 
+    })
+    //console.log(postData)
+
+    //const img = postData !== undefined ? `http://127.0.0.1:4000/api/image/${postData.image}` : ''
+    //const postId = postData !== undefined ? postData._id : ''
+    
+    const [imgLink, setImgLink] = useState(img)
+    useEffect(()=>{
+        if (img) {
+            var imageHelper = new Image();
+    
+            imageHelper.onload = function(){
+                setImage({...imageHelper, webWidth: imageHelper.width * (250 / imageHelper.height), webHeight: 250})
+            }
+        
+            imageHelper.src = img;
+        }
+    }, [])
 
 
     return (
