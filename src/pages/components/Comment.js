@@ -13,14 +13,15 @@ const Comment = () => {
         webHeight: 100, 
     })
 
-    useSetImageSize(image, setImage, 'https://i.pinimg.com/originals/a3/b7/a9/a3b7a9ad0a865fd25ec8b55aa8ff62fa.jpg')
+    //useSetImageSize(image, setImage, 'https://i.pinimg.com/originals/a3/b7/a9/a3b7a9ad0a865fd25ec8b55aa8ff62fa.jpg')
 
     return (
         <div className={poststyles.comment}>
             <h3>Comment by Homer Simpson</h3>
             <div className={poststyles.commentcontent}>
+                {/*
                 <img src={'https://i.pinimg.com/originals/a3/b7/a9/a3b7a9ad0a865fd25ec8b55aa8ff62fa.jpg'} 
-                width={image.webWidth} height={image.webHeight}></img>
+                width={image.webWidth} height={image.webHeight}></img>*/ }
                 <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum aliquam sodales. Suspendisse mattis metus sit amet orci elementum...
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum aliquam sodales. Suspendisse mattis metus sit amet orci elementum...

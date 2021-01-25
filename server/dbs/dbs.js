@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectID
 const assert = require('assert');
 const crypto = require('crypto')
 const zlib = require('zlib')
@@ -109,10 +110,18 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
     //console.log(userCol)
 
     return await postCol.find({topic: topic})
-
-
-
   }
+
+  exports.getPost = async (postID) => {
+    console.log("getPosts Called")
+    const postCol = db.collection('posts')
+    //console.log(userCol)
+    console.log(postID)
+    const res = await postCol.findOne({"_id": new ObjectId(postID)})
+    console.log(res)
+    return res
+  }
+  
  
 });
 

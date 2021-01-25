@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Header from './components/Header'
 import Comment from './components/Comment'
 import FloatingForm from './components/FloatingForm'
@@ -7,8 +7,9 @@ import {Link, useParams} from 'react-router-dom'
 import globalstyles from './Global.module.css'
 import capy from "../assets/images/capy.png";
 import poststyles from './PostStyles.module.css'
-import topicstyles from './TopicStyles.module.css'
-
+import getPost from '../api/getPost'
+import post from '../api/post'
+import { ImageComponent } from 'react-native'
 
 const Post = ({ match }) => {
     const {topic, postID} = useParams();
@@ -21,24 +22,38 @@ const Post = ({ match }) => {
         ratio: 1,//width/height
         webWidth: 200,//inbrowser
         webHeight: 300, 
+        src: '',
     })
+
+    const [postData, setPostData] = useState({}) 
     //console.log(postData)
 
     //const img = postData !== undefined ? `http://127.0.0.1:4000/api/image/${postData.image}` : ''
     //const postId = postData !== undefined ? postData._id : ''
     
-    const [imgLink, setImgLink] = useState(img)
+    //const [imgLink, setImgLink] = useState(img)
     useEffect(()=>{
-        if (img) {
+        console.log("effect none")
+        getPost(postID).then(p => setPostData(p))
+
+    }, [])
+
+    useEffect(()=>{
+        console.log("effect postData")
+        console.log(postData)
+        if (postData.image) {
+
             var imageHelper = new Image();
-    
+
             imageHelper.onload = function(){
                 setImage({...imageHelper, webWidth: imageHelper.width * (250 / imageHelper.height), webHeight: 250})
             }
         
-            imageHelper.src = img;
+            imageHelper.src = `http://127.0.0.1:4000/api/image/${postData.image}`
+
+            setImage({...image, src: imageHelper.src})
         }
-    }, [])
+    }, [postData])
 
 
     return (
@@ -48,7 +63,7 @@ const Post = ({ match }) => {
                 <FloatingForm />
                 <div className={poststyles.post}>
                     <h1>The Post title</h1>
-                    <img src={capy} width='200' height='100'></img>
+                    <img src={image.src} width={image.webWidth} height={image.webHeight}></img>
                     <div>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum aliquam sodales. Suspendisse mattis metus sit amet orci elementum...
                     </div>

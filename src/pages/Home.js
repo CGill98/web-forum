@@ -110,11 +110,13 @@ const Home = () => {
                 </div>
                 <div className={homestyles.trendingpostsdiv}>
                     <h1>Trending Posts</h1>
+
+                    {/*}
                     <PostDivLink trending={true} id={1}/>
                     <PostDivLink trending={true} id={2}/>
                     <PostDivLink trending={true} id={3}/>
                     <PostDivLink trending={true} id={4}/>
-
+                    */}
                 </div>
             </div>
         </div>

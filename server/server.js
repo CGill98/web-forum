@@ -113,6 +113,15 @@ app.get('/api/posts/:topic', async (req, res) => {
     })
 })
 
+app.get('/api/post/:postID', async (req, res) => {
+    console.log('/api/post/:postID')
+    const postID = req.params.postID;
+
+    const result = await dbs.getPost(postID)
+    //console.log(result)
+    res.json(result)
+})
+
 app.get('/api/image/:file', async (req, res) => {
     console.log('/api/image/:file')
     const file = req.params.file;

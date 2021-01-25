@@ -6,7 +6,7 @@ import './PostDivLink.css'
 require('dotenv').config()
 
 //CONVERT THIS TO A POST 'ADVERTISEMENT'
-const PostDivLink = ({ trending, id, postData }) => {
+const PostDivLink = ({ trending, postData }) => {
     
     const [image, setImage] = useState({
         width: 0,//file
@@ -28,22 +28,25 @@ const PostDivLink = ({ trending, id, postData }) => {
             imageHelper.onload = function(){
                 setImage({...imageHelper, webWidth: imageHelper.width * (250 / imageHelper.height), webHeight: 250})
             }
+
         
             imageHelper.src = img;
+
+            document.getElementById(postId).width = 250 < image.webWidth ? image.webHeight + 50 : 300 
+
         }
     }, [])
 
 
-
     return (
-    <div className={homestyles.trendingpost} id={id}>
+    <div className={homestyles.trendingpost} id={postId}>
         <Link to={`/philosophy/post/${postId}`}>
-            <h2>The Problem of Induction</h2> 
+            <h2>{postData.title}</h2> 
             {trending && <h3>On Philosophy</h3>}
             <div className={homestyles.trendingpostcontent}>
                 {imgLink && <img src={imgLink} width={image.webWidth} height={image.webHeight} className={homestyles.trendingpostimg}></img>}
                 <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum aliquam sodales. Suspendisse mattis metus sit amet orci elementum...
+                    {postData.text}
                 </div>
             </div>
         </Link>

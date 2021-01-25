@@ -103,7 +103,7 @@ Quisque eleifend egestas ex, at vehicula risus tempus vel. Maecenas bibendum max
                     <PostDivLink id={4}/>
                     <PostDivLink id={5}/>
                     */} 
-                {posts.length !== 0 && posts.map((p, index) => <PostDivLink postData={p} id={6} key={index}/>)}
+                {posts.length !== 0 && posts.map((p, index) => <PostDivLink postData={p} /*id={6}*/ key={index}/>)}
                     
                 </div>
                 <div>
