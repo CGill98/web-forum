@@ -143,6 +143,20 @@ app.post('/api/post', upload.single('image'), async (req, res) => {
     res.json(result)
 })
 
+app.post('/api/comment', upload.single('image'), async (req, res) => {
+    console.log('/api/comment')
+    console.log(req.file)
+    console.log(req.headers)
+
+    console.log(req.body)
+    //const postzip = req.body
+    const post = {...req.body, image: req.file.filename}
+    const result = await dbs.writePost(post)
+
+    res.json(result)
+})
+
+
 app.use((req, res, next)=>{
     res.status(404).send('<h1> Page not found </h1>');
  });

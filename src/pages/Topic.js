@@ -71,9 +71,9 @@ const Topic = ({ match }) => {
                         {state.form_error && <h2 className={topicstyles.formerror}>{state.form_error}</h2>}
                         
                         <label>Post Title</label>
-                        <input type="text" name="title" value={state.title} onChange={(e)=>{dispatch({type: 'title', payload: e.target.value})}}/>
+                        <input required type="text" name="title" value={state.title} onChange={(e)=>{dispatch({type: 'title', payload: e.target.value})}}/>
                         <label>Description</label>
-                        <textarea className={topicstyles.textarea} value={state.text} onChange={(e)=>{dispatch({type: 'text', payload: e.target.value})}}>
+                        <textarea required className={topicstyles.textarea} value={state.text} onChange={(e)=>{dispatch({type: 'text', payload: e.target.value})}}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vulputate egestas nunc quis ornare. Etiam id sollicitudin risus. Ut sit amet ligula libero. Integer ultrices mauris vel efficitur eleifend. Nunc rhoncus ligula vel scelerisque molestie. Vestibulum vel nunc mattis mauris tristique ornare sit amet tempus dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus finibus egestas. Etiam eu lorem sed lacus dapibus luctus nec et lorem. Etiam a massa purus. Mauris rutrum quam eu lectus porttitor, vitae consectetur diam pretium.
 
 Nunc mollis elit et ipsum porta gravida. Curabitur elementum vehicula diam eu porta. Vestibulum tempor ex ultricies, bibendum libero quis, commodo felis. In hendrerit pharetra lobortis. Etiam eget quam vel neque malesuada mattis at non nisi. Nunc sit amet maximus orci, vel sodales dui. Etiam bibendum velit vel interdum egestas. Pellentesque vel eros sed turpis porta porta id sed lacus. Praesent commodo sem nisl, eget congue felis fermentum vel. Donec sodales lectus sed gravida vulputate. Proin fermentum turpis vel sodales mollis. Duis ac erat eu risus sodales placerat ac vitae quam. Fusce non leo fringilla, malesuada lorem ac, feugiat dolor.
@@ -81,7 +81,7 @@ Nunc mollis elit et ipsum porta gravida. Curabitur elementum vehicula diam eu po
 Quisque eleifend egestas ex, at vehicula risus tempus vel. Maecenas bibendum maximus sem non tempus. Ut rhoncus neque a dapibus consectetur. Sed ornare dignissim orci in vestibulum. Donec eget odio sed nisi faucibus sagittis. Quisque accumsan, elit id ultricies facilisis, leo justo accumsan diam, a mattis massa lacus nec massa. Aliquam mattis tellus tristique augue sodales egestas quis quis elit. Nam eu venenatis metus, vel lacinia purus.
                         </textarea>
                         <label>Image (PNG, JPG, GIF)</label>
-                        <input type='file' name='image' ref={imageInput} charSet='utf-8' onChange={(e)=>{
+                        <input type='file' name='image' ref={imageInput} charSet='utf-8' required onChange={(e)=>{
                             console.log(e.target.files)
                             if (['image/png','image/jpeg','image/gif'].includes(e.target.files[0].type)) {
                                 dispatch({type: 'image', payload: e.target.files[0]})

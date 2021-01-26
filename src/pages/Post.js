@@ -17,9 +17,6 @@ const Post = ({ match }) => {
     console.log(postID)
 
     const [image, setImage] = useState({
-        width: 0,//file
-        height: 0,
-        ratio: 1,//width/height
         webWidth: 200,//inbrowser
         webHeight: 300, 
         src: '',
@@ -35,23 +32,22 @@ const Post = ({ match }) => {
     useEffect(()=>{
         console.log("effect none")
         getPost(postID).then(p => setPostData(p))
-
     }, [])
 
     useEffect(()=>{
-        console.log("effect postData")
-        console.log(postData)
+
         if (postData.image) {
 
             var imageHelper = new Image();
 
             imageHelper.onload = function(){
                 setImage({...imageHelper, webWidth: imageHelper.width * (250 / imageHelper.height), webHeight: 250})
+                setImage({...image, src: imageHelper.src})
+                
             }
         
             imageHelper.src = `http://127.0.0.1:4000/api/image/${postData.image}`
 
-            setImage({...image, src: imageHelper.src})
         }
     }, [postData])
 
@@ -60,14 +56,15 @@ const Post = ({ match }) => {
         <div className={globalstyles.page}>
             <Header />
             <div className={globalstyles.content}>
-                <FloatingForm />
+                <FloatingForm postID={postID}/>
                 <div className={poststyles.post}>
-                    <h1>The Post title</h1>
+                    <h1>{postData.title}</h1>
                     <img src={image.src} width={image.webWidth} height={image.webHeight}></img>
                     <div>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum aliquam sodales. Suspendisse mattis metus sit amet orci elementum...
+                        {postData.text}
                     </div>
                 </div>
+
                 <Comment />
                 <Comment />
                 <Comment />
