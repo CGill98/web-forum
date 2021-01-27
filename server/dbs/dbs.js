@@ -104,6 +104,19 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
 
   }
 
+  exports.writeComment = async (comment) => {
+    console.log("write comment Called")
+    const commentCol = db.collection('comments')
+    //console.log(userCol)
+
+    const result = await commentCol.insertOne(comment)
+
+    //console.log(result)
+
+    return result;
+
+  }
+
   exports.getPosts = async (topic) => {
     console.log("getPosts Called")
     const postCol = db.collection('posts')
@@ -118,6 +131,15 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
     //console.log(userCol)
     console.log(postID)
     const res = await postCol.findOne({"_id": new ObjectId(postID)})
+    console.log(res)
+    return res
+  }
+  
+  exports.getComments = async (postID) => {
+    console.log("Get Comments Called")
+    const commentCol = db.collection('comments')
+    //console.log(userCol)
+    const res = await commentCol.find({"postID": postID})
     console.log(res)
     return res
   }

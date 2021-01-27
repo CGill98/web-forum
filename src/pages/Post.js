@@ -9,7 +9,7 @@ import capy from "../assets/images/capy.png";
 import poststyles from './PostStyles.module.css'
 import getPost from '../api/getPost'
 import post from '../api/post'
-import { ImageComponent } from 'react-native'
+import getComments from '../api/getComments'
 
 const Post = ({ match }) => {
     const {topic, postID} = useParams();
@@ -23,6 +23,8 @@ const Post = ({ match }) => {
     })
 
     const [postData, setPostData] = useState({}) 
+    const [commentData, setCommentData] = useState([]) 
+
     //console.log(postData)
 
     //const img = postData !== undefined ? `http://127.0.0.1:4000/api/image/${postData.image}` : ''
@@ -32,6 +34,7 @@ const Post = ({ match }) => {
     useEffect(()=>{
         console.log("effect none")
         getPost(postID).then(p => setPostData(p))
+        getComments(postID).then(c => setCommentData(c))
     }, [])
 
     useEffect(()=>{
@@ -64,12 +67,8 @@ const Post = ({ match }) => {
                         {postData.text}
                     </div>
                 </div>
+                {commentData.length !== 0 && commentData.map((c, index) => <Comment key={index}/>)}
 
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
 
             </div>
         </div>

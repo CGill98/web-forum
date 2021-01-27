@@ -122,6 +122,17 @@ app.get('/api/post/:postID', async (req, res) => {
     res.json(result)
 })
 
+app.get('/api/comments/:postID', async (req, res) => {
+    console.log('/api/posts/:topic')
+    const postID = req.params.postID;
+
+    const result = await dbs.getComments(postID)
+    //console.log(result)
+    result.toArray((err, data) => {
+        res.json(data)
+    })
+})
+
 app.get('/api/image/:file', async (req, res) => {
     console.log('/api/image/:file')
     const file = req.params.file;
@@ -145,13 +156,12 @@ app.post('/api/post', upload.single('image'), async (req, res) => {
 
 app.post('/api/comment', upload.single('image'), async (req, res) => {
     console.log('/api/comment')
-    console.log(req.file)
-    console.log(req.headers)
+    //console.log(req.file)
 
     console.log(req.body)
     //const postzip = req.body
-    const post = {...req.body, image: req.file.filename}
-    const result = await dbs.writePost(post)
+    const comment = req.file ? {...req.body, image: req.file.filename} : req.body
+    const result = await dbs.writeComment(comment)
 
     res.json(result)
 })

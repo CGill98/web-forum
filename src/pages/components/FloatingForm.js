@@ -51,7 +51,7 @@ const FloatingForm = (postID) => {
             <h2>Make a Comment</h2>
             <span className={formstyle.minmaxbtn} onClick={toggleSize}>{maximised ? 'Minimise' : 'Maximise'}</span>
         </div>
-        <form className={formstyle.newpostform} onSubmit={e => comment(formState, postID, e)}>
+        <form className={formstyle.newpostform} onSubmit={e => comment(formState, e, dispatch)}>
             <label>Post Title</label>
             <input type="text" name="title" value='Kants critique of pure..'/>
             <label>Reply To</label>

@@ -22,10 +22,6 @@ const comment = async (state, event, dispatch) => {
                                 method: 'POST',
                                 mode: 'cors',
                                 body: commentPost,
-                                /*
-                                headers: {
-                                  'Content-Type': 'undefined; charset=UTF-8;',
-                                }*/
                             }).then(res => res.text()).catch(err => {console.log(err); return err})
     
     console.log(result)
