@@ -52,8 +52,6 @@ const FloatingForm = (postID) => {
             <span className={formstyle.minmaxbtn} onClick={toggleSize}>{maximised ? 'Minimise' : 'Maximise'}</span>
         </div>
         <form className={formstyle.newpostform} onSubmit={e => comment(formState, e, dispatch)}>
-            <label>Post Title</label>
-            <input type="text" name="title" value='Kants critique of pure..'/>
             <label>Reply To</label>
             <input type="text" name="replyto" value='user 1'/> 
             <ul className={formstyle.replylist}>
@@ -77,6 +75,17 @@ Nunc mollis elit et ipsum porta gravida. Curabitur elementum vehicula diam eu po
 
 Quisque eleifend egestas ex, at vehicula risus tempus vel. Maecenas bibendum maximus sem non tempus. Ut rhoncus neque a dapibus consectetur. Sed ornare dignissim orci in vestibulum. Donec eget odio sed nisi faucibus sagittis. Quisque accumsan, elit id ultricies facilisis, leo justo accumsan diam, a mattis massa lacus nec massa. Aliquam mattis tellus tristique augue sodales egestas quis quis elit. Nam eu venenatis metus, vel lacinia purus.
             </textarea>
+            <input type='file' name='image' charSet='utf-8' required onChange={(e)=>{
+                console.log(e.target.files)
+                if (['image/png','image/jpeg','image/gif'].includes(e.target.files[0].type)) {
+                    dispatch({type: 'image', payload: e.target.files[0]})
+                } else {
+                    //change state 'this file type is not allowed'
+                    dispatch({type: 'form_error', payload: 'File type is not accepted'})
+
+                }   
+                
+                }}></input>
             <input type="submit" value="Submit" className={formstyle.submitbtn}/>
         </form>
     </div>

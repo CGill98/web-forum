@@ -43,9 +43,8 @@ const Post = ({ match }) => {
 
             var imageHelper = new Image();
 
-            imageHelper.onload = function(){
-                setImage({...imageHelper, webWidth: imageHelper.width * (250 / imageHelper.height), webHeight: 250})
-                setImage({...image, src: imageHelper.src})
+            imageHelper.onload = () => {
+                setImage({...imageHelper, webWidth: imageHelper.width * (250 / imageHelper.height), webHeight: 250, src: imageHelper.src})
                 
             }
         
@@ -62,12 +61,12 @@ const Post = ({ match }) => {
                 <FloatingForm postID={postID}/>
                 <div className={poststyles.post}>
                     <h1>{postData.title}</h1>
-                    <img src={image.src} width={image.webWidth} height={image.webHeight}></img>
-                    <div>
+                    <p>
+                        <img src={image.src} width={image.webWidth} height={image.webHeight}></img>
                         {postData.text}
-                    </div>
+                    </p>
                 </div>
-                {commentData.length !== 0 && commentData.map((c, index) => <Comment key={index}/>)}
+                {commentData.length !== 0 && commentData.map((c, index) => <Comment commentData={c} key={index}/>)}
 
 
             </div>

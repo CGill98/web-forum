@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import comment from '../../api/comment'
 import {useSetImageSize} from '../../modules/useSetImageSize'
 
 import poststyles from '../PostStyles.module.css'
 
 
-const Comment = () => {
+const Comment = ({commentData}) => {
     const [image, setImage] = useState({
         width: 0,//file
         height: 0,
@@ -13,21 +14,31 @@ const Comment = () => {
         webHeight: 100, 
     })
 
+    const [imgLink, setImgLink] = useState(commentData.image !== undefined ? `http://127.0.0.1:4000/api/image/${commentData.image}` : '')
+
     //useSetImageSize(image, setImage, 'https://i.pinimg.com/originals/a3/b7/a9/a3b7a9ad0a865fd25ec8b55aa8ff62fa.jpg')
+    useEffect(()=>{
+        if (imgLink) {
+            var imageHelper = new Image();
+    
+            imageHelper.onload = function(){
+                setImage({...imageHelper, webWidth: imageHelper.width * (250 / imageHelper.height), webHeight: 250})
+            }
+
+        
+            imageHelper.src = imgLink;
+
+
+        }
+    }, [])
 
     return (
         <div className={poststyles.comment}>
-            <h3>Comment by Homer Simpson</h3>
-            <div className={poststyles.commentcontent}>
-                {/*
-                <img src={'https://i.pinimg.com/originals/a3/b7/a9/a3b7a9ad0a865fd25ec8b55aa8ff62fa.jpg'} 
-                width={image.webWidth} height={image.webHeight}></img>*/ }
-                <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum aliquam sodales. Suspendisse mattis metus sit amet orci elementum...
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum aliquam sodales. Suspendisse mattis metus sit amet orci elementum...
-                
-                </div>
-            </div>
+            <h3>Comment by {commentData.username}</h3>
+            <p className={poststyles.commentcontent}>
+                {imgLink && <img src={imgLink} width={image.webWidth} height={image.webHeight}></img>}
+                {commentData.text}                
+            </p>
             <div>
                 <div className={poststyles.replybtn}>Make Reply</div>
 

@@ -10,6 +10,12 @@
     justify-content: center;
 }
 
+
+.post p img {
+    float: left;
+    margin-right: 10px;
+}
+
 .comment {
     background-color: rgb(20, 20, 0);
     padding: 10px;
@@ -27,12 +33,14 @@
 }
 
 .commentcontent {
-    display: flex;
-    justify-content: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
+
 } 
 
 .commentcontent > img {
     margin-right: 10px;
+    float: left;
 }
 
 .commentcontent > img:hover {

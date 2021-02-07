@@ -12,7 +12,7 @@ const comment = async (state, event, dispatch) => {
    
     commentPost.set('username', value.username)
     commentPost.set('timeAdded', value.timeAdded)
-    commentPost.set('postID', value.postID)
+    commentPost.set('postID', value.postID.postID)
     commentPost.set('text', value.text)
     if (value.image.name) {
       commentPost.set('image', value.image, value.image.name)
