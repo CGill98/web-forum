@@ -1,10 +1,9 @@
 
 const comment = async (state, event, dispatch) => {
-    event.preventDefault()
+    //event.preventDefault()
 
     let {form_error, ...value} = state; //copy all info execept form error
     console.log(value)
-    value.username = 'derek'
     value.timeAdded = new Date().getTime() //UTC time since 1970...
 
     console.log(event.target)
