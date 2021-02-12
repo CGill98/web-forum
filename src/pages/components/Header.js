@@ -7,7 +7,7 @@ import {
   } from "react-router-dom";
 import style from './header.module.css'
 //logo colour #BA1500
-import logo from '../../assets/images/orangutan-red.png'
+import logo from '../../assets/images/orangutan-100.png'
 import {useSelector, useDispatch} from 'react-redux'
 
 export default function Header() {

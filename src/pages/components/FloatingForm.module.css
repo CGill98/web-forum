@@ -35,13 +35,13 @@
         top: 20%;
     }
     to {
-        top: 90%;
+        top: 80%;
     }
 }
 
 @keyframes form-maximise {
     from {
-        top: 90%;
+        top: 80%;
     }
     to {
         top: 20%;
@@ -49,7 +49,7 @@
 }
 
 .formdivminimised {
-    top: 90%;
+    top: 80%;
     animation: form-minimise 0.4s;
     overflow-y: hidden;
 
@@ -89,10 +89,12 @@
     width: 100%;
     min-width: 500px;
     padding: 5px;
-    background-color: #f8f8f8;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    overflow: scroll;
+    background-color: rgb(40, 40, 40);
+    color: white;
+    border: 1px solid rgb(20, 20, 0);
+    
+    border-radius: 10px 0px 0px 10px;
+    overflow-y: scroll;
 
     font-family: Arial;
     font-size: 15px;
@@ -158,8 +160,14 @@
     background-color: rgb(180, 0, 0);
     border-radius: 8px;
     padding: 2px;
-    width: 50px;
+    width: auto;
+    margin: 2px;
 
     text-align: center;
     font-size: 14px;
+}
+
+.replylist li:hover {
+    background-color: rgb(140, 0, 0);
+    cursor: pointer;
 }

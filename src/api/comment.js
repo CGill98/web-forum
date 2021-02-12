@@ -1,6 +1,6 @@
 
 const comment = async (state, event, dispatch) => {
-    //event.preventDefault()
+    event.preventDefault()
 
     let {form_error, ...value} = state; //copy all info execept form error
     console.log(value)

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import comment from '../../api/comment'
 import {useSetImageSize} from '../../modules/useSetImageSize'
+import {useDispatch} from 'react-redux'
 
 import poststyles from '../PostStyles.module.css'
 
@@ -13,6 +14,8 @@ const Comment = ({commentData}) => {
         webWidth: 100,//inbrowser
         webHeight: 100, 
     })
+    const globalDispatch = useDispatch()
+
 
     const [imgLink, setImgLink] = useState(commentData.image !== undefined ? `http://127.0.0.1:4000/api/image/${commentData.image}` : '')
 
@@ -34,13 +37,13 @@ const Comment = ({commentData}) => {
 
     return (
         <div className={poststyles.comment}>
-            <h3>Comment by {commentData.username}</h3>
+            <h3>{commentData.username} - Comment No. {commentData._id}</h3>
             <p className={poststyles.commentcontent}>
                 {imgLink && <img src={imgLink} width={image.webWidth} height={image.webHeight}></img>}
                 {commentData.text}                
             </p>
             <div>
-                <div className={poststyles.replybtn}>Make Reply</div>
+                <div className={poststyles.replybtn} onClick={() => globalDispatch({type: "push_reply", payload: {id: commentData._id}})}>Make Reply</div>
 
                 <ul>
                     <span><b>Replies</b></span>

@@ -39,16 +39,18 @@ const FloatingForm = (postID) => {
     const [maximised, setMaximised] = useState(false)
     const [formState, dispatch] = useReducer(formReducer, initFormState)
     const user = useSelector(state => state.user)
+    const cmt = useSelector(state => state.comment)
+    const replies = cmt.replies 
 
     const toggleSize = () => {
         setMaximised(!maximised)
     }
 
     useState(()=>{    
-    dispatch({type: 'postID', payload: postID})
+        dispatch({type: 'postID', payload: postID})
 
-    console.log(user)
-    dispatch({type: 'username', payload: user.name ? user.name : 'Anonymous'}) 
+        console.log(user)
+        dispatch({type: 'username', payload: user.name ? user.name : 'Anonymous'}) 
     })
 
 
@@ -60,19 +62,8 @@ const FloatingForm = (postID) => {
         </div>
         <form className={formstyle.newpostform} onSubmit={e => comment(formState, e, dispatch)}>
             <label>Reply To</label>
-            <input type="text" name="replyto" value='user 1'/> 
             <ul className={formstyle.replylist}>
-                <li>User 1</li>
-                <li>User 1</li>
-                <li>User 1</li>
-                <li>User 1</li>
-                <li>User 1</li>
-                <li>User 1</li>
-                <li>User 1</li>
-                <li>User 1</li>
-                <li>User 1</li>
-                <li>User 1</li>
-
+                {replies.map(r => <li>{`${r.id.slice(0, 6)}...`}</li>)}
             </ul>
             <label>Description</label>
             <textarea className={formstyle.textarea}>
