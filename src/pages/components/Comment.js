@@ -38,21 +38,28 @@ const Comment = ({commentData}) => {
     return (
         <div className={poststyles.comment}>
             <h3>{commentData.username} - Comment No. {commentData._id}</h3>
+            <ul>
+                <span><b>Replying To</b></span>
+                <li>user 1</li>
+                <li>user 1</li>
+                <li>user 1</li>
+                <li>user 1</li>
+
+            </ul>
+            <ul>
+                <span><b>Replies From</b></span>
+                <li>user 1</li>
+                <li>user 1</li>
+                <li>user 1</li>
+                <li>user 1</li>
+
+            </ul>
             <p className={poststyles.commentcontent}>
                 {imgLink && <img src={imgLink} width={image.webWidth} height={image.webHeight}></img>}
                 {commentData.text}                
             </p>
             <div>
                 <div className={poststyles.replybtn} onClick={() => globalDispatch({type: "push_reply", payload: {id: commentData._id}})}>Make Reply</div>
-
-                <ul>
-                    <span><b>Replies</b></span>
-                    <li>user 1</li>
-                    <li>user 1</li>
-                    <li>user 1</li>
-                    <li>user 1</li>
-
-                </ul>
             </div>
         </div>
     )

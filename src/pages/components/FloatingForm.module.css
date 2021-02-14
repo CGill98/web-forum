@@ -10,8 +10,8 @@
     height: 600px;
     text-align: center;
     vertical-align: middle;
-    overflow-y: scroll;
-
+    overflow: auto;
+    
     background-color: rgb(20, 20, 0);
     padding: 10px;
     border: 3px solid rgb(40, 40, 20);
@@ -26,7 +26,7 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: start;
 }
 
@@ -35,13 +35,13 @@
         top: 20%;
     }
     to {
-        top: 80%;
+        top: 90%;
     }
 }
 
 @keyframes form-maximise {
     from {
-        top: 80%;
+        top: 90%;
     }
     to {
         top: 20%;
@@ -49,7 +49,7 @@
 }
 
 .formdivminimised {
-    top: 80%;
+    top: 90%;
     animation: form-minimise 0.4s;
     overflow-y: hidden;
 
@@ -64,11 +64,13 @@
 }
 
 .newpostform {
+
+    height: 85%;
     width: auto;
 
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: start;
 
 }
@@ -127,13 +129,12 @@
     color: white;
     border: none;
     padding: 12px;
-    height: 40px;
+    min-height: 40px;
     min-width: 60px;
     outline: none;
-    font-size: 20px;
+    font-size: 16px;
     border-radius: 8px;
 
-    text-align: center;
 }
 
 .minmaxbtn:hover {
@@ -170,4 +171,63 @@
 .replylist li:hover {
     background-color: rgb(140, 0, 0);
     cursor: pointer;
+}
+
+@media only screen and (max-width: 850px) {
+    .formdiv, .formdivminimised {
+        z-index: 1;
+        position: fixed;
+        left: 20%;
+
+        width: auto;
+        max-width: 550px;
+        min-width: auto;
+        height: 600px;
+        text-align: center;
+        vertical-align: middle;
+        overflow: auto;
+
+        background-color: rgb(20, 20, 0);
+        padding: 10px;
+        border: 3px solid rgb(40, 40, 20);
+
+        animation: form-maximise 0.4s;
+
+
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 25px;
+        border-radius: 8px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: start;
+    }
+
+    @keyframes form-minimise {
+        from {
+            top: 20%;
+        }
+        to {
+            top: 90%;
+        }
+    }
+
+    @keyframes form-maximise {
+        from {
+            top: 90%;
+        }
+        to {
+            top: 20%;
+        }
+    }
+
+    .formdivminimised {
+        top: 90%;
+        animation: form-minimise 0.4s;
+        overflow-y: hidden;
+
+    }
+
 }
