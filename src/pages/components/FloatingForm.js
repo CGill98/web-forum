@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useReducer} from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import comment from '../../api/comment'
 import formstyle from './FloatingForm.module.css'
 
@@ -41,6 +41,11 @@ const FloatingForm = (postID) => {
     const user = useSelector(state => state.user)
     const cmt = useSelector(state => state.comment)
     const replies = cmt.replies 
+    const globalDispatch = useDispatch()
+    //const temp = rep.map(r => {return {id: r.id, cross: false}})
+    //console.log(temp)
+    //const [replies, setReplies] = useState([])
+    console.log(replies)
 
     const toggleSize = () => {
         setMaximised(!maximised)
@@ -51,6 +56,7 @@ const FloatingForm = (postID) => {
 
         console.log(user)
         dispatch({type: 'username', payload: user.name ? user.name : 'Anonymous'}) 
+        //setReplies(temp)
     })
 
 
@@ -63,7 +69,7 @@ const FloatingForm = (postID) => {
         <form className={formstyle.newpostform} onSubmit={e => comment(formState, e, dispatch)}>
             <label>Reply To</label>
             <ul className={formstyle.replylist}>
-                {replies.map(r => <li>{`${r.id.slice(0, 6)}...`}</li>)}
+                {replies.map(r => <li onClick={() => globalDispatch({type:'remove_reply', payload: r})}>{`${r.id.slice(0, 6)}...`} {r.cross && <span>X</span>}</li>)}
             </ul>
             <label>Description</label>
             <textarea className={formstyle.textarea} onChange={e => dispatch({type:'text', payload: e.target.value})}>
