@@ -69,7 +69,7 @@ const FloatingForm = (postID) => {
         <form className={formstyle.newpostform} onSubmit={e => comment(formState, e, dispatch)}>
             <label>Reply To</label>
             <ul className={formstyle.replylist}>
-                {replies.map(r => <li onClick={() => globalDispatch({type:'remove_reply', payload: r})}>{`${r.id.slice(0, 6)}...`} {r.cross && <span>X</span>}</li>)}
+                {replies.map(r => <li onClick={() => globalDispatch({type:'switch_cross', payload: r})}>{`${r.id.slice(0, 6)}...`} {r.cross && <span onClick={() => globalDispatch({type:'remove_reply', payload: r})}>X</span>}</li>)}
             </ul>
             <label>Description</label>
             <textarea className={formstyle.textarea} onChange={e => dispatch({type:'text', payload: e.target.value})}>
