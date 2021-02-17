@@ -11,6 +11,7 @@ const initFormState = {
     image: {name: ''},
     username: '',
     postID: '', 
+    reply_to: [],
     form_error: ''
 }
 
@@ -26,6 +27,8 @@ const formReducer = (state, action) => {
             return {...state, postID: action.payload}  
         case 'username':
             return {...state, username: action.payload}  
+        case 'reply_to':
+            return {...state, reply_to: action.payload};
         case 'form_error':
             return {...state, form_error: action.payload};
         default:
@@ -35,6 +38,12 @@ const formReducer = (state, action) => {
 
 
 const FloatingForm = (postID) => {
+
+    const handleFormSubmit = e => {
+        console.log(replies.map(r => r.id))
+        dispatch({type: 'reply_to', payload: replies.map(r => r.id)})
+        comment(formState, e, dispatch)
+    }
 
     const [maximised, setMaximised] = useState(false)
     const [formState, dispatch] = useReducer(formReducer, initFormState)
@@ -66,7 +75,7 @@ const FloatingForm = (postID) => {
             <h2>Make a Comment</h2>
             <span className={formstyle.minmaxbtn} onClick={toggleSize}>{maximised ? 'Minimise' : 'Maximise'}</span>
         </div>
-        <form className={formstyle.newpostform} onSubmit={e => comment(formState, e, dispatch)}>
+        <form className={formstyle.newpostform} onSubmit={e => handleFormSubmit(e)}>
             <label>Reply To</label>
             <ul className={formstyle.replylist}>
                 {replies.map(r => <li onClick={() => globalDispatch({type:'switch_cross', payload: r})}>{`${r.id.slice(0, 6)}...`} {r.cross && <span onClick={() => globalDispatch({type:'remove_reply', payload: r})}>X</span>}</li>)}

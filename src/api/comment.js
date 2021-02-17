@@ -13,9 +13,13 @@ const comment = async (state, event, dispatch) => {
     commentPost.set('timeAdded', value.timeAdded)
     commentPost.set('postID', value.postID.postID)
     commentPost.set('text', value.text)
+    commentPost.set('replyTo', JSON.stringify(value.reply_to))
+
     if (value.image.name) {
       commentPost.set('image', value.image, value.image.name)
     }
+
+    console.log(commentPost)
     
     const result = await fetch(`http://127.0.0.1:4000/api/comment`, {
                                 method: 'POST',

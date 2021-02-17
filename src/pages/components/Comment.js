@@ -15,7 +15,7 @@ const Comment = ({commentData}) => {
         webHeight: 100, 
     })
     const globalDispatch = useDispatch()
-
+    console.log(commentData)
 
     const [imgLink, setImgLink] = useState(commentData.image !== undefined ? `http://127.0.0.1:4000/api/image/${commentData.image}` : '')
 
@@ -40,10 +40,7 @@ const Comment = ({commentData}) => {
             <h3>{commentData.username} - Comment No. {commentData._id}</h3>
             <ul>
                 <span><b>Replying To</b></span>
-                <li>user 1</li>
-                <li>user 1</li>
-                <li>user 1</li>
-                <li>user 1</li>
+            {commentData.replyTo && commentData.replyTo.map(r => <li>{r}</li>)}
 
             </ul>
             <ul>
