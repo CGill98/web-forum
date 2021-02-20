@@ -11,7 +11,7 @@ const initFormState = {
     image: {name: ''},
     username: '',
     postID: '', 
-    reply_to: [],
+    reply_to: ["nice"],
     form_error: ''
 }
 
@@ -28,6 +28,7 @@ const formReducer = (state, action) => {
         case 'username':
             return {...state, username: action.payload}  
         case 'reply_to':
+            console.log(action.payload)
             return {...state, reply_to: action.payload};
         case 'form_error':
             return {...state, form_error: action.payload};
@@ -39,11 +40,7 @@ const formReducer = (state, action) => {
 
 const FloatingForm = (postID) => {
 
-    const handleFormSubmit = e => {
-        console.log(replies.map(r => r.id))
-        dispatch({type: 'reply_to', payload: replies.map(r => r.id)})
-        comment(formState, e, dispatch)
-    }
+
 
     const [maximised, setMaximised] = useState(false)
     const [formState, dispatch] = useReducer(formReducer, initFormState)
@@ -56,18 +53,31 @@ const FloatingForm = (postID) => {
     //const [replies, setReplies] = useState([])
     console.log(replies)
 
+
     const toggleSize = () => {
         setMaximised(!maximised)
     }
 
-    useState(()=>{    
+    useEffect(() => {    
         dispatch({type: 'postID', payload: postID})
 
         console.log(user)
         dispatch({type: 'username', payload: user.name ? user.name : 'Anonymous'}) 
         //setReplies(temp)
-    })
+    }, [])
 
+    useEffect(() => {
+        console.log("firing")
+        dispatch({type: 'reply_to', payload: replies.map(r => r.id)})
+
+    }, [cmt])
+
+    const handleFormSubmit = e => {
+        console.log(replies.map(r => r.id))
+        //dispatch({type: 'reply_to', payload: replies.map(r => r.id)})
+        console.log(formState)
+        comment(formState, e, dispatch)
+    }
 
     return (
     <div className={maximised ? formstyle.formdiv : formstyle.formdivminimised}>   

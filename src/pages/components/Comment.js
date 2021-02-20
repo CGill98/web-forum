@@ -40,7 +40,7 @@ const Comment = ({commentData}) => {
             <h3>{commentData.username} - Comment No. {commentData._id}</h3>
             <ul>
                 <span><b>Replying To</b></span>
-            {commentData.replyTo && commentData.replyTo.map(r => <li>{r}</li>)}
+            {commentData.replyTo && commentData.replyTo.map(r => <li>{`${r.slice(0, 6)}...`}</li>)}
 
             </ul>
             <ul>

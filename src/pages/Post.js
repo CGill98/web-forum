@@ -13,8 +13,6 @@ import getComments from '../api/getComments'
 
 const Post = ({ match }) => {
     const {topic, postID} = useParams();
-    console.log(topic)
-    console.log(postID)
 
     const [image, setImage] = useState({
         webWidth: 200,//inbrowser
@@ -37,19 +35,27 @@ const Post = ({ match }) => {
         getComments(postID).then(c => c)
                            .then(c => {
                                //const cmt = c.map(cmt => { ...cmt, replyTo: JSON.parse(cmt.replyTo)}))
-                               
-                               let cmt = Object.create(c)
-                               for (const [key, value] of Object.entries(cmt)) {
-                                    console.log(key)
-                                    if (key === "replyTo") {
-                                        console.log(cmt.replyTo)
+                               console.log(c)
+                               let cmts = [] 
+                               for (let i = 0; i < c.length; i++) {
+                                    console.log(`loop ${i}`)
+                                   let cmt = Object.create(c[i])
+                                   if (cmt.replyTo)
                                         cmt.replyTo = JSON.parse(cmt.replyTo);
-                                        console.log(cmt.replyTo)
+                                    /*
+                                   for (const [key, value] of Object.entries(cmt)) {
+                                        console.log(key)
+                                        if (key === "replyTo") {
+                                            console.log(cmt.replyTo)
+                                            cmt.replyTo = JSON.parse(cmt.replyTo);
+                                            console.log(cmt.replyTo)
 
-                                    }
+                                        }
+                                   }*/
+                                   cmts.push(cmt)
                                }
-                               console.log(cmt)
-                               setCommentData(cmt)
+                               console.log(cmts)
+                               setCommentData(cmts)
                             })
     }, [])
 
