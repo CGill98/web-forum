@@ -51,11 +51,14 @@
 
 
 .comment ul {
+    /*
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    row-gap: 5px;
+    grid-row-gap: 2px;
     justify-content: center;
-    align-self: center;
+    align-self: center;*/
+    display: flex;
+    flex-direction: row;
     list-style: none;
     
     width: 100%;
@@ -68,7 +71,8 @@
     background-color: rgb(180, 0, 0);
     border-radius: 8px;
     padding: 2px;
-    width: 50px;
+    margin-right: 10px;
+    width: 65px;
 
     text-align: center;
     font-size: 14px;

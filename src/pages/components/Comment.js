@@ -38,11 +38,11 @@ const Comment = ({commentData}) => {
     return (
         <div className={poststyles.comment}>
             <h3>{commentData.username} - Comment No. {commentData._id}</h3>
-            <ul>
+            {commentData.replyTo &&
+            <ul>            
                 <span><b>Replying To</b></span>
-            {commentData.replyTo && commentData.replyTo.map(r => <li>{`${r.slice(0, 6)}...`}</li>)}
-
-            </ul>
+                {commentData.replyTo.map(r => <li>{`${r.slice(0, 6)}...`}</li>)}
+            </ul>}
             <ul>
                 <span><b>Replies From</b></span>
                 <li>user 1</li>
