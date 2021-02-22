@@ -42,16 +42,6 @@ const Post = ({ match }) => {
                                    let cmt = Object.create(c[i])
                                    if (cmt.replyTo)
                                         cmt.replyTo = JSON.parse(cmt.replyTo);
-                                    /*
-                                   for (const [key, value] of Object.entries(cmt)) {
-                                        console.log(key)
-                                        if (key === "replyTo") {
-                                            console.log(cmt.replyTo)
-                                            cmt.replyTo = JSON.parse(cmt.replyTo);
-                                            console.log(cmt.replyTo)
-
-                                        }
-                                   }*/
                                    cmts.push(cmt)
                                }
                                console.log(cmts)

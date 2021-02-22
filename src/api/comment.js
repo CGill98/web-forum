@@ -14,7 +14,11 @@ const comment = async (state, event, dispatch) => {
     commentPost.set('postID', value.postID.postID)
     commentPost.set('text', value.text)
     console.log(value.reply_to)
-    commentPost.set('replyTo', JSON.stringify(value.reply_to))
+    const replyTo = value.reply_to
+    console.log(replyTo.length)
+    
+    if (0 < value.reply_to.length)
+        commentPost.set('replyTo', JSON.stringify(value.reply_to));
 
     if (value.image.name) {
       commentPost.set('image', value.image, value.image.name)

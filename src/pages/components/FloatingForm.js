@@ -11,7 +11,7 @@ const initFormState = {
     image: {name: ''},
     username: '',
     postID: '', 
-    reply_to: ["nice"],
+    reply_to: [],
     form_error: ''
 }
 
@@ -40,19 +40,12 @@ const formReducer = (state, action) => {
 
 const FloatingForm = (postID) => {
 
-
-
     const [maximised, setMaximised] = useState(false)
     const [formState, dispatch] = useReducer(formReducer, initFormState)
     const user = useSelector(state => state.user)
     const cmt = useSelector(state => state.comment)
     const replies = cmt.replies 
     const globalDispatch = useDispatch()
-    //const temp = rep.map(r => {return {id: r.id, cross: false}})
-    //console.log(temp)
-    //const [replies, setReplies] = useState([])
-    console.log(replies)
-
 
     const toggleSize = () => {
         setMaximised(!maximised)
@@ -61,23 +54,16 @@ const FloatingForm = (postID) => {
     useEffect(() => {    
         dispatch({type: 'postID', payload: postID})
 
-        console.log(user)
         dispatch({type: 'username', payload: user.name ? user.name : 'Anonymous'}) 
-        //setReplies(temp)
     }, [])
 
     useEffect(() => {
-        console.log("firing")
         dispatch({type: 'reply_to', payload: replies.map(r => r.id)})
 
     }, [cmt])
 
-    const handleFormSubmit = e => {
-        console.log(replies.map(r => r.id))
-        //dispatch({type: 'reply_to', payload: replies.map(r => r.id)})
-        console.log(formState)
-        comment(formState, e, dispatch)
-    }
+    const handleFormSubmit = e => comment(formState, e, dispatch);
+    
 
     return (
     <div className={maximised ? formstyle.formdiv : formstyle.formdivminimised}>   
@@ -99,7 +85,6 @@ Nunc mollis elit et ipsum porta gravida. Curabitur elementum vehicula diam eu po
 Quisque eleifend egestas ex, at vehicula risus tempus vel. Maecenas bibendum maximus sem non tempus. Ut rhoncus neque a dapibus consectetur. Sed ornare dignissim orci in vestibulum. Donec eget odio sed nisi faucibus sagittis. Quisque accumsan, elit id ultricies facilisis, leo justo accumsan diam, a mattis massa lacus nec massa. Aliquam mattis tellus tristique augue sodales egestas quis quis elit. Nam eu venenatis metus, vel lacinia purus.
             </textarea>
             <input type='file' name='image' charSet='utf-8' onChange={(e)=>{
-                console.log(e.target.files)
                 if (['image/png','image/jpeg','image/gif'].includes(e.target.files[0].type)) {
                     dispatch({type: 'image', payload: e.target.files[0]})
                 } else {
