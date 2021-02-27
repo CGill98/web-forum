@@ -108,8 +108,23 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
     console.log("write comment Called")
     const commentCol = db.collection('comments')
     //console.log(userCol)
+    if (comment.replyTo)
+      comment.replyTo = JSON.parse(comment.replyTo);
 
-    const result = await commentCol.insertOne(comment)
+    const result = await commentCol.insertOne(comment, (err, res)=> {
+      if (comment.replyTo) {
+        const cmtId = res.insertedId;
+        /*
+        push to or create reply from property
+        comment.replyTo.map(r => { 
+          commentCol.update({ _id:  ObjectId(r)}, {$push: {replyTo: cmtId}})
+        })
+        */
+      } 
+
+    })
+
+ 
 
     //console.log(result)
 
@@ -131,7 +146,7 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
     //console.log(userCol)
     console.log(postID)
     const res = await postCol.findOne({"_id": new ObjectId(postID)})
-    console.log(res)
+    //console.log(res)
     return res
   }
   

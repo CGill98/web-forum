@@ -33,20 +33,7 @@ const Post = ({ match }) => {
         console.log("effect none")
         getPost(postID).then(p => setPostData(p))
         getComments(postID).then(c => c)
-                           .then(c => {
-                               //const cmt = c.map(cmt => { ...cmt, replyTo: JSON.parse(cmt.replyTo)}))
-                               console.log(c)
-                               let cmts = [] 
-                               for (let i = 0; i < c.length; i++) {
-                                    console.log(`loop ${i}`)
-                                   let cmt = Object.create(c[i])
-                                   if (cmt.replyTo)
-                                        cmt.replyTo = JSON.parse(cmt.replyTo);
-                                   cmts.push(cmt)
-                               }
-                               console.log(cmts)
-                               setCommentData(cmts)
-                            })
+                           .then(c => setCommentData(c))
     }, [])
 
     useEffect(()=>{
